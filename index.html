@@ -25,8 +25,12 @@
       <img src="img/icono.svg" alt="" width="28" height="28">
       Amoblador3D
     </a>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span class="menu-icono" aria-hidden="true"></span>
+      <span class="menu-texto">Menú</span>
+    </button>
     <nav aria-label="Secciones">
-      <ul>
+      <ul id="menu-principal">
         <li><a href="#que-hace">Qué hace</a></li>
         <li><a href="#como-usar">Cómo usarla</a></li>
         <li><a href="#atajos">Atajos</a></li>
@@ -180,42 +184,42 @@
         </div>
 
         <div class="panel" role="tabpanel" id="p-3d" aria-labelledby="t-3d">
-          <div class="ventana-app"><img src="img/02_casa_completa_3d.png" alt="Vista 3D de una casa con sala, dormitorio, cocina y baño, con el área y el costo de cada ambiente en el panel derecho" width="1426" height="863" loading="lazy"></div>
+          <button type="button" class="ventana-app ampliable" data-src="img/02_casa_completa_3d.png" aria-label="Ampliar: Vista 3D de una casa con sala, dormitorio, cocina y baño, con el área y el costo de cada ambiente en el panel derecho"><img src="img/02_casa_completa_3d.png" alt="Vista 3D de una casa con sala, dormitorio, cocina y baño, con el área y el costo de cada ambiente en el panel derecho" width="1426" height="863" loading="lazy"><span class="ampliar-pista" aria-hidden="true">Clic para ampliar</span></button>
           <div class="panel-texto">
             <h3>Toda la casa en 3D</h3>
             <p>Un proyecto puede tener sala, dormitorios, cocina y baño, en hasta cuatro pisos. Arrastra cada ambiente para armar la distribución: los muros se pegan a los vecinos y una puerta pegada a otro ambiente abre el paso.</p>
           </div>
         </div>
         <div class="panel" role="tabpanel" id="p-planta" aria-labelledby="t-planta" hidden>
-          <div class="ventana-app"><img src="img/05_planta_con_cotas.png" alt="Planta 2D de la sala con cotas en metros y el panel de medidas del mueble de TV seleccionado" width="1426" height="863" loading="lazy"></div>
+          <button type="button" class="ventana-app ampliable" data-src="img/05_planta_con_cotas.png" aria-label="Ampliar: Planta 2D de la sala con cotas en metros y el panel de medidas del mueble de TV seleccionado"><img src="img/05_planta_con_cotas.png" alt="Planta 2D de la sala con cotas en metros y el panel de medidas del mueble de TV seleccionado" width="1426" height="863" loading="lazy"><span class="ampliar-pista" aria-hidden="true">Clic para ampliar</span></button>
           <div class="panel-texto">
             <h3>Planta con medidas</h3>
             <p>Mira el ambiente desde arriba, con las cotas de cada pared y de cada mueble. Cambia ancho, profundidad, alto, color y acabado desde el panel derecho, y mide cualquier distancia con la tecla M.</p>
           </div>
         </div>
         <div class="panel" role="tabpanel" id="p-paseo" aria-labelledby="t-paseo" hidden>
-          <div class="ventana-app"><img src="img/06_recorrido.png" alt="Vista en primera persona caminando dentro de la sala amoblada" width="1426" height="863" loading="lazy"></div>
+          <button type="button" class="ventana-app ampliable" data-src="img/06_recorrido.png" aria-label="Ampliar: Vista en primera persona caminando dentro de la sala amoblada"><img src="img/06_recorrido.png" alt="Vista en primera persona caminando dentro de la sala amoblada" width="1426" height="863" loading="lazy"><span class="ampliar-pista" aria-hidden="true">Clic para ampliar</span></button>
           <div class="panel-texto">
             <h3>Camina por dentro</h3>
             <p>Recorre el ambiente a la altura de los ojos con W, A, S y D. No atraviesas paredes ni muebles, así compruebas si de verdad se puede pasar entre la cama y el closet.</p>
           </div>
         </div>
         <div class="panel" role="tabpanel" id="p-disenar" aria-labelledby="t-disenar" hidden>
-          <div class="ventana-app"><img src="img/10_disenador_de_muebles.png" alt="Diseñador de muebles con un mueble armado a partir de cajas y cilindros" width="1426" height="863" loading="lazy"></div>
+          <button type="button" class="ventana-app ampliable" data-src="img/10_disenador_de_muebles.png" aria-label="Ampliar: Diseñador de muebles con un mueble armado a partir de cajas y cilindros"><img src="img/10_disenador_de_muebles.png" alt="Diseñador de muebles con un mueble armado a partir de cajas y cilindros" width="1426" height="863" loading="lazy"><span class="ampliar-pista" aria-hidden="true">Clic para ampliar</span></button>
           <div class="panel-texto">
             <h3>Arma tus propios muebles</h3>
             <p>Si no encuentras el mueble entre los 18 del catálogo, ármalo con cajas, cilindros, esferas y barras medidas en centímetros. También puedes importar modelos 3D .glb o .gltf.</p>
           </div>
         </div>
         <div class="panel" role="tabpanel" id="p-presup" aria-labelledby="t-presup" hidden>
-          <div class="ventana-app"><img src="img/09_presupuesto.png" alt="Ventana de metrado y presupuesto con pintura, cerámico, zócalo y muebles en soles" width="1426" height="863" loading="lazy"></div>
+          <button type="button" class="ventana-app ampliable" data-src="img/09_presupuesto.png" aria-label="Ampliar: Ventana de metrado y presupuesto con pintura, cerámico, zócalo y muebles en soles"><img src="img/09_presupuesto.png" alt="Ventana de metrado y presupuesto con pintura, cerámico, zócalo y muebles en soles" width="1426" height="863" loading="lazy"><span class="ampliar-pista" aria-hidden="true">Clic para ampliar</span></button>
           <div class="panel-texto">
             <h3>Metrado y presupuesto</h3>
             <p>Calcula los m² de piso y de paredes sin contar puertas ni ventanas, los galones de pintura para dos manos y el cerámico con 10 % de desperdicio. Los precios se editan y se exportan a Excel o a un informe PDF.</p>
           </div>
         </div>
         <div class="panel" role="tabpanel" id="p-noche" aria-labelledby="t-noche" hidden>
-          <div class="ventana-app"><img src="img/08_luz_modo_noche.png" alt="Ambiente de noche iluminado solo por las lámparas" width="1426" height="863" loading="lazy"></div>
+          <button type="button" class="ventana-app ampliable" data-src="img/08_luz_modo_noche.png" aria-label="Ampliar: Ambiente de noche iluminado solo por las lámparas"><img src="img/08_luz_modo_noche.png" alt="Ambiente de noche iluminado solo por las lámparas" width="1426" height="863" loading="lazy"><span class="ampliar-pista" aria-hidden="true">Clic para ampliar</span></button>
           <div class="panel-texto">
             <h3>Luz de día y de noche</h3>
             <p>Coloca bombillas, focos y la luz del sol que entra por una ventana. Con la tecla N apagas el sol para ver si las lámparas alcanzan.</p>
@@ -357,7 +361,9 @@
           <button role="tab" id="t-cod2" aria-controls="p-cod2" aria-selected="false" tabindex="-1">Migración de la base de datos</button>
           </div>
         <div class="codigo-panel" role="tabpanel" id="p-cod0" aria-labelledby="t-cod0">
-          <p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/model/FSHFFootprint.java</code>, líneas 28 a 36</p>
+          <div class="codigo-cabecera"><p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/model/FSHFFootprint.java</code>, líneas 28 a 36</p>
+            <button type="button" class="copiar">Copiar</button>
+          </div>
           <pre class="codigo"><code><span class="ln">28</span>public boolean overlaps(FSHFFootprint other) {
 <span class="ln">29</span>    double dx = other.x - x, dz = other.z - z;
 <span class="ln">30</span>    double[][] all = {axes()[0], axes()[1], other.axes()[0], other.axes()[1]};
@@ -370,7 +376,9 @@
           <p class="codigo-nota">Teorema del eje separador: si en alguno de los cuatro ejes las proyecciones de los dos muebles no se tocan, no chocan.</p>
         </div>
         <div class="codigo-panel" role="tabpanel" id="p-cod1" aria-labelledby="t-cod1" hidden>
-          <p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/estimate/FSHFPurchaseSpec.java</code>, líneas 22 a 27</p>
+          <div class="codigo-cabecera"><p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/estimate/FSHFPurchaseSpec.java</code>, líneas 22 a 27</p>
+            <button type="button" class="copiar">Copiar</button>
+          </div>
           <pre class="codigo"><code><span class="ln">22</span>public double quantity(double area) {
 <span class="ln">23</span>    if (area &lt;= 0) return 0;
 <span class="ln">24</span>    double raw = area * coats * (1 + waste) / coverage;
@@ -380,7 +388,9 @@
           <p class="codigo-nota">Convierte m² en lo que hay que comprar: manos de pintura, desperdicio, rendimiento y redondeo a la unidad de venta.</p>
         </div>
         <div class="codigo-panel" role="tabpanel" id="p-cod2" aria-labelledby="t-cod2" hidden>
-          <p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/persistence/FSHFDatabase.java</code>, líneas 235 a 254</p>
+          <div class="codigo-cabecera"><p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/persistence/FSHFDatabase.java</code>, líneas 235 a 254</p>
+            <button type="button" class="copiar">Copiar</button>
+          </div>
           <pre class="codigo"><code><span class="ln">235</span>private void migrate() throws SQLException {
 <span class="ln">236</span>    int version;
 <span class="ln">237</span>    try (Statement st = connection.createStatement(); ResultSet rs = st.executeQuery(&quot;PRAGMA user_version&quot;)) {
@@ -457,25 +467,29 @@
           <h3>La aplicación</h3>
           <ul class="archivos">
             <li>
-              <a href="https://github.com/alex123floresc-sketch/amoblador3d/releases/download/v2.0.0/Amoblador3D-2.0.0.exe">
+              <a class="con-tipo" href="https://github.com/alex123floresc-sketch/amoblador3d/releases/download/v2.0.0/Amoblador3D-2.0.0.exe">
+                <span class="tipo tipo-exe" aria-hidden="true">EXE</span>
                 <span class="archivo-nombre">Instalador para Windows</span>
                 <span class="archivo-meta">.exe · 65 MB · trae Java incluido, no necesitas instalar nada más</span>
               </a>
             </li>
             <li>
-              <a href="https://github.com/alex123floresc-sketch/amoblador3d/releases/download/v2.0.0/Amoblador3D-2.0.0-windows.zip">
+              <a class="con-tipo" href="https://github.com/alex123floresc-sketch/amoblador3d/releases/download/v2.0.0/Amoblador3D-2.0.0-windows.zip">
+                <span class="tipo tipo-zip" aria-hidden="true">ZIP</span>
                 <span class="archivo-nombre">Versión sin instalar (.zip)</span>
                 <span class="archivo-meta">63 MB · se extrae y se abre Amoblador3D.exe; sirve para una USB</span>
               </a>
             </li>
             <li>
-              <a href="https://github.com/alex123floresc-sketch/amoblador3d/releases/download/v2.0.0/amoblador3d.jar">
+              <a class="con-tipo" href="https://github.com/alex123floresc-sketch/amoblador3d/releases/download/v2.0.0/amoblador3d.jar">
+                <span class="tipo tipo-jar" aria-hidden="true">JAR</span>
                 <span class="archivo-nombre">Archivo .jar</span>
                 <span class="archivo-meta">26 MB · necesita Java 21 o superior</span>
               </a>
             </li>
             <li>
-              <a href="https://github.com/alex123floresc-sketch/amoblador3d">
+              <a class="con-tipo" href="https://github.com/alex123floresc-sketch/amoblador3d">
+                <span class="tipo tipo-git" aria-hidden="true">GIT</span>
                 <span class="archivo-nombre">Código fuente en GitHub</span>
                 <span class="archivo-meta">Java 21, JavaFX y SQLite</span>
               </a>
@@ -492,19 +506,22 @@
           <h3>Documentación</h3>
           <ul class="archivos">
             <li>
-              <a href="descargas/05_Manual_de_Usuario.pdf">
+              <a class="con-tipo" href="descargas/05_Manual_de_Usuario.pdf">
+                <span class="tipo tipo-pdf" aria-hidden="true">PDF</span>
                 <span class="archivo-nombre">Manual de usuario</span>
                 <span class="archivo-meta">PDF · cómo usar cada función, paso a paso y con capturas</span>
               </a>
             </li>
             <li>
-              <a href="descargas/06_Manual_de_Instalacion.pdf">
+              <a class="con-tipo" href="descargas/06_Manual_de_Instalacion.pdf">
+                <span class="tipo tipo-pdf" aria-hidden="true">PDF</span>
                 <span class="archivo-nombre">Manual de instalación y ejecución</span>
                 <span class="archivo-meta">PDF · instalador, archivo .jar, código fuente y errores comunes</span>
               </a>
             </li>
             <li>
-              <a href="descargas/09_Codigo_Fuente.pdf">
+              <a class="con-tipo" href="descargas/09_Codigo_Fuente.pdf">
+                <span class="tipo tipo-pdf" aria-hidden="true">PDF</span>
                 <span class="archivo-nombre">Código fuente</span>
                 <span class="archivo-meta">PDF · estructura del proyecto y fragmentos principales</span>
               </a>
@@ -547,6 +564,13 @@
     </div>
     <p class="pie-legal">© 2026 FSHF. Todos los derechos reservados. Amoblador3D es un software de autoría original de sus desarrolladores.</p>
   </footer>
+
+  <dialog class="visor" aria-label="Captura ampliada">
+    <form method="dialog"><button class="visor-cerrar" type="submit">Cerrar <kbd>Esc</kbd></button></form>
+    <img src="" alt="">
+  </dialog>
+
+  <a class="arriba" href="#" aria-label="Volver arriba">↑</a>
 
   <script src="js/app.js" defer></script>
 </body>

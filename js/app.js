@@ -79,3 +79,59 @@ document.querySelectorAll('.selector[role="tablist"]').forEach((lista) => {
   }, { rootMargin: '-45% 0px -50% 0px' });
   secciones.forEach((s) => obs.observe(s));
 })();
+
+// 5. Menú en pantallas chicas
+(() => {
+  const boton = document.querySelector('.menu-boton');
+  const lista = document.getElementById('menu-principal');
+  if (!boton || !lista) return;
+  const poner = (abierto) => {
+    boton.setAttribute('aria-expanded', abierto);
+    lista.classList.toggle('abierto', abierto);
+  };
+  boton.addEventListener('click', () => poner(boton.getAttribute('aria-expanded') !== 'true'));
+  lista.addEventListener('click', (e) => { if (e.target.closest('a')) poner(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') poner(false); });
+})();
+
+// 6. Ampliar capturas
+(() => {
+  const visor = document.querySelector('.visor');
+  if (!visor || typeof visor.showModal !== 'function') return;
+  const img = visor.querySelector('img');
+  document.querySelectorAll('.ampliable').forEach((b) => {
+    b.addEventListener('click', () => {
+      const original = b.querySelector('img');
+      img.src = b.dataset.src;
+      img.alt = original.alt;
+      visor.showModal();
+    });
+  });
+  // Clic fuera de la imagen cierra el visor
+  visor.addEventListener('click', (e) => { if (e.target === visor) visor.close(); });
+})();
+
+// 7. Copiar fragmentos de código (sin los números de línea)
+document.querySelectorAll('.copiar').forEach((b) => {
+  b.addEventListener('click', async () => {
+    const code = b.closest('.codigo-panel').querySelector('pre.codigo code').cloneNode(true);
+    code.querySelectorAll('.ln').forEach((n) => n.remove());
+    try {
+      await navigator.clipboard.writeText(code.textContent);
+      b.textContent = 'Copiado';
+      b.classList.add('listo');
+    } catch {
+      b.textContent = 'No se pudo copiar';
+    }
+    setTimeout(() => { b.textContent = 'Copiar'; b.classList.remove('listo'); }, 1800);
+  });
+});
+
+// 8. Botón para volver arriba
+(() => {
+  const arriba = document.querySelector('.arriba');
+  if (!arriba) return;
+  const revisar = () => arriba.classList.toggle('visible', window.scrollY > 900);
+  window.addEventListener('scroll', revisar, { passive: true });
+  revisar();
+})();

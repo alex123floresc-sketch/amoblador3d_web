@@ -409,3 +409,141 @@ kbd {
 /* Logo del equipo */
 .equipo-logo { width: 180px; height: auto; margin-bottom: 1.5rem; }
 .pie-logo { width: 120px; height: auto; margin-bottom: .6rem; }
+
+/* =========================================================
+   Mejoras visuales
+   ========================================================= */
+
+/* Detalles finos: selección, barra de desplazamiento */
+::selection { background: rgb(79 156 249 / .35); color: #fff; }
+html { scrollbar-color: var(--borde) var(--profundo); }
+::-webkit-scrollbar { width: 12px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--profundo); }
+::-webkit-scrollbar-thumb { background: var(--borde); border-radius: 6px; border: 3px solid var(--profundo); }
+::-webkit-scrollbar-thumb:hover { background: #4a535e; }
+
+/* Portada: halo de luz cálida detrás del plano, como una lámpara en la vista 3D */
+.plano { position: relative; isolation: isolate; }
+.plano::before {
+  content: ""; position: absolute; inset: -18% -12% -10% -12%; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(closest-side at 62% 38%, rgb(255 209 102 / .13), transparent 70%),
+    radial-gradient(closest-side at 30% 75%, rgb(79 156 249 / .10), transparent 75%);
+  filter: blur(8px);
+}
+.plano { box-shadow: 0 1px 0 rgb(255 255 255 / .04) inset, 0 30px 70px -30px rgb(0 0 0 / .8); }
+
+/* Botón principal con un poco de relieve, como los botones de JavaFX */
+.boton-principal { box-shadow: 0 1px 0 rgb(255 255 255 / .15) inset, 0 8px 20px -10px rgb(47 111 202 / .9); }
+.boton { transition: background-color .15s, transform .15s; }
+.boton:active { transform: translateY(1px); }
+
+/* Menú en pantallas chicas */
+.menu-boton { display: none; }
+@media (max-width: 52rem) {
+  .menu-boton {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font: 700 .95rem var(--letra); color: var(--texto);
+    background: var(--base); border: 1px solid var(--borde); border-radius: var(--radio);
+    padding: .45rem .8rem; cursor: pointer;
+  }
+  .menu-icono, .menu-icono::before, .menu-icono::after {
+    display: block; width: 16px; height: 2px; background: currentColor; border-radius: 1px;
+    position: relative; transition: transform .2s, opacity .2s;
+  }
+  .menu-icono::before, .menu-icono::after { content: ""; position: absolute; left: 0; }
+  .menu-icono::before { top: -5px; }
+  .menu-icono::after { top: 5px; }
+  .menu-boton[aria-expanded="true"] .menu-icono { background: transparent; }
+  .menu-boton[aria-expanded="true"] .menu-icono::before { transform: translateY(5px) rotate(45deg); }
+  .menu-boton[aria-expanded="true"] .menu-icono::after { transform: translateY(-5px) rotate(-45deg); }
+
+  .barra nav { position: absolute; top: 100%; left: 0; right: 0; }
+  .barra nav ul {
+    display: none; flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--profundo); border-bottom: 1px solid var(--linea);
+    padding: .5rem var(--margen) 1rem;
+  }
+  .barra nav ul.abierto { display: flex; }
+  .barra li:not(:last-child) { display: block; }
+  .barra nav a { display: block; padding: .75rem 0; border-bottom: 1px solid var(--borde); font-size: 1rem; }
+  .barra nav .nav-descargar { margin-top: .75rem; text-align: center; border-bottom: 0; }
+}
+
+/* Capturas ampliables */
+button.ventana-app {
+  display: block; width: 100%; padding: 0; font: inherit; color: inherit; text-align: left;
+  cursor: zoom-in; position: relative;
+}
+.ampliar-pista {
+  position: absolute; right: 12px; bottom: 12px;
+  font-size: .8rem; font-weight: 700; color: #fff;
+  background: rgb(29 33 37 / .85); border: 1px solid var(--borde); border-radius: 5px;
+  padding: .3rem .6rem; opacity: 0; transition: opacity .2s;
+}
+button.ventana-app:hover .ampliar-pista, button.ventana-app:focus-visible .ampliar-pista { opacity: 1; }
+button.ventana-app:focus-visible { outline: 2px solid var(--azul-claro); outline-offset: 3px; }
+
+.visor {
+  width: min(96vw, 1500px); max-height: 94vh; padding: 0; overflow: hidden;
+  background: var(--profundo); color: var(--texto);
+  border: 1px solid var(--borde); border-radius: 10px;
+  box-shadow: 0 40px 100px rgb(0 0 0 / .7);
+}
+.visor::backdrop { background: rgb(10 12 14 / .82); backdrop-filter: blur(3px); }
+.visor form { display: flex; justify-content: flex-end; padding: .5rem; background: var(--linea); }
+.visor-cerrar {
+  font: 700 .875rem var(--letra); color: var(--texto); background: var(--base);
+  border: 1px solid var(--borde); border-radius: var(--radio); padding: .35rem .75rem; cursor: pointer;
+}
+.visor img { display: block; width: 100%; height: auto; max-height: calc(94vh - 52px); object-fit: contain; }
+@media (prefers-reduced-motion: no-preference) {
+  .visor[open] { animation: abrir-visor .18s ease-out; }
+}
+@keyframes abrir-visor { from { opacity: 0; transform: scale(.98); } }
+
+/* Transición al cambiar de pestaña */
+@media (prefers-reduced-motion: no-preference) {
+  .panel:not([hidden]), .codigo-panel:not([hidden]) { animation: aparecer-panel .22s ease-out; }
+}
+@keyframes aparecer-panel { from { opacity: 0; } }
+
+/* Fragmentos de código: cabecera con botón Copiar */
+.codigo-cabecera { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: .6rem; }
+.codigo-cabecera .codigo-ruta { margin: 0; }
+.copiar {
+  flex: none; font: 700 .8rem var(--letra); color: var(--texto-2);
+  background: var(--base); border: 1px solid var(--borde); border-radius: 5px;
+  padding: .3rem .7rem; cursor: pointer;
+}
+.copiar:hover { color: #fff; background: #3a424b; }
+.copiar.listo { color: #fff; background: #2e7d4f; border-color: #2e7d4f; }
+
+/* Descargas: etiqueta del tipo de archivo, como los chips de la app */
+.archivos a.con-tipo { grid-template-columns: 3.2rem 1fr; column-gap: 1rem; align-items: center; }
+.archivos a.con-tipo .archivo-nombre, .archivos a.con-tipo .archivo-meta { grid-column: 2; }
+.tipo {
+  grid-row: 1 / span 2; align-self: center;
+  display: grid; place-items: center; height: 2.4rem; border-radius: 6px;
+  font: 800 .72rem var(--letra); letter-spacing: .04em; color: #fff;
+}
+.tipo-exe { background: var(--azul); }
+.tipo-zip { background: #3a7fdc; }
+.tipo-jar { background: var(--violeta); }
+.tipo-git { background: var(--base); border: 1px solid var(--borde); }
+.tipo-pdf { background: #a33a3a; }
+.archivos a { transition: background-color .15s; }
+
+/* Volver arriba */
+.arriba {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 6;
+  display: grid; place-items: center; width: 2.75rem; height: 2.75rem;
+  border-radius: 50%; text-decoration: none; font-weight: 800; font-size: 1.1rem;
+  color: #fff; background: var(--base); border: 1px solid var(--borde);
+  box-shadow: 0 10px 24px -10px rgb(0 0 0 / .8);
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity .2s, transform .2s, background-color .15s;
+}
+.arriba.visible { opacity: 1; pointer-events: auto; transform: none; }
+.arriba:hover { background: var(--azul); }
+.codigo-cabecera .codigo-ruta { min-width: 0; overflow-wrap: anywhere; }
