@@ -29,9 +29,9 @@
   });
 })();
 
-// 2. Selector de vistas (pestañas accesibles con flechas)
-(() => {
-  const pestanas = [...document.querySelectorAll('.selector [role="tab"]')];
+// 2. Pestañas accesibles con flechas (vistas de la app y fragmentos de código), cada grupo por separado
+document.querySelectorAll('.selector[role="tablist"]').forEach((lista) => {
+  const pestanas = [...lista.querySelectorAll('[role="tab"]')];
   const elegir = (tab, enfocar) => {
     pestanas.forEach((t) => {
       const activa = t === tab;
@@ -50,7 +50,7 @@
       if (e.key === 'End') elegir(pestanas.at(-1), true);
     });
   });
-})();
+});
 
 // 3. Portada: alternar entre el plano y la vista 3D del ejemplo
 (() => {

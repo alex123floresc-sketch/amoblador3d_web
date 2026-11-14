@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Amoblador3D: diseña tu casa en 3D con medidas reales</title>
   <meta name="description" content="Aplicación gratuita para Windows: dibuja tus ambientes con medidas reales, amóblalos en 3D, recórrelos y obtén el metrado y el presupuesto en soles. Funciona sin internet.">
-  <meta name="author" content="Equipo Amoblador3D">
+  <meta name="author" content="FSHF">
   <meta name="theme-color" content="#1d2125">
   <meta property="og:title" content="Amoblador3D: diseña tu casa en 3D con medidas reales">
   <meta property="og:description" content="Diseña y amuebla tus ambientes en 3D con medidas reales y obtén el metrado y el presupuesto en soles. Para Windows, sin internet.">
@@ -30,6 +30,7 @@
         <li><a href="#que-hace">Qué hace</a></li>
         <li><a href="#como-usar">Cómo usarla</a></li>
         <li><a href="#atajos">Atajos</a></li>
+        <li><a href="#codigo">Código</a></li>
         <li><a href="#equipo">Equipo</a></li>
         <li><a href="#descargas" class="nav-descargar">Descargar</a></li>
       </ul>
@@ -317,14 +318,107 @@
       <p class="raton">Con el ratón en 3D: el botón izquierdo gira la cámara, el derecho la desplaza y la rueda acerca.</p>
     </section>
 
+    <!-- CÓDIGO FUENTE: estructura y fragmentos copiados del programa -->
+    <section id="codigo" class="seccion">
+      <div class="encabezado">
+        <h2>Código fuente</h2>
+        <p>
+          85 archivos Java (16 300 líneas) organizados en paquetes según su responsabilidad.
+          Todas las clases llevan el prefijo FSHF, las iniciales del equipo. Abajo, la estructura del
+          proyecto y tres fragmentos copiados tal cual del programa.
+        </p>
+      </div>
+      <div class="codigo-grid">
+        <div>
+          <h3 class="codigo-titulo">Estructura del proyecto</h3>
+          <pre class="arbol"><code>amoblador3d/
+├── src/main/java/pe/edu/unaj/amoblador3d/
+│   ├── model/         16 archivos  habitación, muebles, casa
+│   ├── design/         8 archivos  reglas, deshacer, imán, plantillas
+│   ├── catalog/        5 archivos  catálogo de muebles
+│   ├── estimate/       4 archivos  metrado y presupuesto
+│   ├── persistence/   11 archivos  SQLite, .amob3d, autoguardado
+│   ├── scene/         17 archivos  vista 3D, planta y recorrido
+│   ├── gltf/           2 archivos  modelos 3D glTF
+│   ├── report/         2 archivos  informe PDF
+│   ├── ui/            15 archivos  ventanas y paneles
+│   └── util/           3 archivos  utilidades
+├── src/main/resources/       estilos, catálogo y modelos 3D
+├── src/test/                 pruebas automáticas (JUnit 5)
+├── database/                 scripts SQL (SQLite y PostgreSQL)
+├── packaging/                creación del instalador
+└── pom.xml                   dependencias y construcción</code></pre>
+        </div>
+        <div>
+          <h3 class="codigo-titulo">Fragmentos del código</h3>
+          <div class="selector" role="tablist" aria-label="Fragmentos del código">
+          <button role="tab" id="t-cod0" aria-controls="p-cod0" aria-selected="true">Choques entre muebles</button>
+          <button role="tab" id="t-cod1" aria-controls="p-cod1" aria-selected="false" tabindex="-1">Cantidad de material</button>
+          <button role="tab" id="t-cod2" aria-controls="p-cod2" aria-selected="false" tabindex="-1">Migración de la base de datos</button>
+          </div>
+        <div class="codigo-panel" role="tabpanel" id="p-cod0" aria-labelledby="t-cod0">
+          <p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/model/FSHFFootprint.java</code>, líneas 28 a 36</p>
+          <pre class="codigo"><code><span class="ln">28</span>public boolean overlaps(FSHFFootprint other) {
+<span class="ln">29</span>    double dx = other.x - x, dz = other.z - z;
+<span class="ln">30</span>    double[][] all = {axes()[0], axes()[1], other.axes()[0], other.axes()[1]};
+<span class="ln">31</span>    for (double[] n : all) {
+<span class="ln">32</span>        double distance = Math.abs(dx * n[0] + dz * n[1]);
+<span class="ln">33</span>        if (distance &gt;= projectedRadius(n[0], n[1]) + other.projectedRadius(n[0], n[1]) - EPS) return false;
+<span class="ln">34</span>    }
+<span class="ln">35</span>    return true;
+<span class="ln">36</span>}</code></pre>
+          <p class="codigo-nota">Teorema del eje separador: si en alguno de los cuatro ejes las proyecciones de los dos muebles no se tocan, no chocan.</p>
+        </div>
+        <div class="codigo-panel" role="tabpanel" id="p-cod1" aria-labelledby="t-cod1" hidden>
+          <p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/estimate/FSHFPurchaseSpec.java</code>, líneas 22 a 27</p>
+          <pre class="codigo"><code><span class="ln">22</span>public double quantity(double area) {
+<span class="ln">23</span>    if (area &lt;= 0) return 0;
+<span class="ln">24</span>    double raw = area * coats * (1 + waste) / coverage;
+<span class="ln">25</span>
+<span class="ln">26</span>    return Math.ceil(raw / step - 1e-9) * step;
+<span class="ln">27</span>}</code></pre>
+          <p class="codigo-nota">Convierte m² en lo que hay que comprar: manos de pintura, desperdicio, rendimiento y redondeo a la unidad de venta.</p>
+        </div>
+        <div class="codigo-panel" role="tabpanel" id="p-cod2" aria-labelledby="t-cod2" hidden>
+          <p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/persistence/FSHFDatabase.java</code>, líneas 235 a 254</p>
+          <pre class="codigo"><code><span class="ln">235</span>private void migrate() throws SQLException {
+<span class="ln">236</span>    int version;
+<span class="ln">237</span>    try (Statement st = connection.createStatement(); ResultSet rs = st.executeQuery(&quot;PRAGMA user_version&quot;)) {
+<span class="ln">238</span>        version = rs.next() ? rs.getInt(1) : 0;
+<span class="ln">239</span>    }
+<span class="ln">240</span>    if (version &gt; SCHEMA_VERSION) {
+<span class="ln">241</span>        throw new SQLException(&quot;La base de datos fue creada con una versión más nueva de Amoblador3D.&quot;);
+<span class="ln">242</span>    }
+<span class="ln">243</span>    for (int v = version; v &lt; SCHEMA_VERSION; v++) {
+<span class="ln">244</span>        String[] step = STEPS[v];
+<span class="ln">245</span>        int next = v + 1;
+<span class="ln">246</span>        transaction(c -&gt; {
+<span class="ln">247</span>            try (Statement st = c.createStatement()) {
+<span class="ln">248</span>                for (String sql : step) st.execute(sql);
+<span class="ln">249</span>                st.execute(&quot;PRAGMA user_version = &quot; + next);
+<span class="ln">250</span>            }
+<span class="ln">251</span>            return null;
+<span class="ln">252</span>        });
+<span class="ln">253</span>    }
+<span class="ln">254</span>}</code></pre>
+          <p class="codigo-nota">Aplica uno por uno, dentro de una transacción, los cambios de esquema pendientes; los proyectos se conservan al actualizar.</p>
+        </div>
+        </div>
+      </div>
+      <p class="codigo-enlaces">
+        <a class="boton boton-secundario" href="descargas/09_Codigo_Fuente.pdf">Documento del código fuente (PDF)</a>
+        <a class="boton boton-secundario" href="https://github.com/alex123floresc-sketch/amoblador3d">Ver el código completo en GitHub</a>
+      </p>
+    </section>
+
     <!-- INGENIERÍA Y EQUIPO -->
     <section id="equipo" class="seccion ingenieria">
       <div class="encabezado">
         <h2>Ingeniería detrás del producto</h2>
         <p>
-          Amoblador3D lo diseña, desarrolla y mantiene un equipo de ingenieros de sistemas y
-          software. Lo construimos con un proceso iterativo, control de versiones, integración
-          continua y pruebas automatizadas en cada entrega.
+          Amoblador3D lo diseña, desarrolla y mantiene FSHF, nuestro equipo de ingenieros de
+          sistemas y software. Lo construimos con un proceso iterativo, control de versiones,
+          integración continua y pruebas automatizadas en cada entrega.
         </p>
       </div>
 
@@ -339,6 +433,7 @@
         </dl>
 
         <div class="equipo">
+          <img class="equipo-logo" src="img/fshf_logo.png" alt="FSHF" width="229" height="74">
           <h3>El equipo</h3>
           <ul>
             <li><span class="persona">Alexander Edson Flores Calcina</span><span class="rol">Dirección del proyecto, arquitectura y desarrollo</span></li>
@@ -354,7 +449,7 @@
     <section id="descargas" class="seccion descargas">
       <div class="encabezado">
         <h2>Descargas</h2>
-        <p>Todo es gratuito. Si tienes dudas para instalar, empieza por el manual de instalación.</p>
+        <p>Todo es gratuito. Si tienes dudas para instalar, empieza por el manual de instalación y ejecución.</p>
       </div>
 
       <div class="descargas-grid">
@@ -393,19 +488,19 @@
             <li>
               <a href="descargas/05_Manual_de_Usuario.pdf">
                 <span class="archivo-nombre">Manual de usuario</span>
-                <span class="archivo-meta">PDF · 2 MB</span>
+                <span class="archivo-meta">PDF · cómo usar cada función, paso a paso y con capturas</span>
               </a>
             </li>
             <li>
-              <a href="https://github.com/alex123floresc-sketch/amoblador3d/raw/main/documentacion/doc%202/06_Manual_de_Instalacion.docx">
-                <span class="archivo-nombre">Manual de instalación</span>
-                <span class="archivo-meta">Word (.docx)</span>
+              <a href="descargas/06_Manual_de_Instalacion.pdf">
+                <span class="archivo-nombre">Manual de instalación y ejecución</span>
+                <span class="archivo-meta">PDF · instalador, archivo .jar, código fuente y errores comunes</span>
               </a>
             </li>
             <li>
-              <a href="https://github.com/alex123floresc-sketch/amoblador3d/raw/main/documentacion/doc%202/08_Informe_Final.docx">
-                <span class="archivo-nombre">Informe final del proyecto</span>
-                <span class="archivo-meta">Word (.docx)</span>
+              <a href="descargas/09_Codigo_Fuente.pdf">
+                <span class="archivo-nombre">Código fuente</span>
+                <span class="archivo-meta">PDF · estructura del proyecto y fragmentos principales</span>
               </a>
             </li>
           </ul>
@@ -441,9 +536,10 @@
     </nav>
     <div>
       <p class="pie-sub">Desarrollo</p>
-      <p>Equipo Amoblador3D<br>Juliaca, Puno, Perú</p>
+      <img class="pie-logo" src="img/fshf_logo.png" alt="FSHF" width="155" height="50">
+      <p>Juliaca, Puno, Perú</p>
     </div>
-    <p class="pie-legal">© 2026 Equipo Amoblador3D. Todos los derechos reservados. Amoblador3D es un software de autoría original de sus desarrolladores.</p>
+    <p class="pie-legal">© 2026 FSHF. Todos los derechos reservados. Amoblador3D es un software de autoría original de sus desarrolladores.</p>
   </footer>
 
   <script src="js/app.js" defer></script>
