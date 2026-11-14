@@ -51,3 +51,31 @@
     });
   });
 })();
+
+// 3. Portada: alternar entre el plano y la vista 3D del ejemplo
+(() => {
+  const figura = document.querySelector('.plano');
+  const img = figura.querySelector('.plano-3d');
+  figura.querySelectorAll('.conmutador button').forEach((b, _, todos) => {
+    b.addEventListener('click', () => {
+      const en3d = b.dataset.vista === '3d';
+      todos.forEach((o) => o.setAttribute('aria-pressed', o === b));
+      figura.classList.toggle('en-3d', en3d);
+      img.hidden = !en3d;
+    });
+  });
+})();
+
+// 4. Barra: marca la sección visible
+(() => {
+  const enlaces = [...document.querySelectorAll('.barra nav a[href^="#"]')];
+  const secciones = enlaces.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const obs = new IntersectionObserver((entradas) => {
+    entradas.forEach((e) => {
+      if (!e.isIntersecting) return;
+      enlaces.forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === `#${e.target.id}`));
+      enlaces.forEach((a) => a.hasAttribute('aria-current') && a.setAttribute('aria-current', 'true'));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secciones.forEach((s) => obs.observe(s));
+})();
