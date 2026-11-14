@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amoblador3D: diseña tu casa en 3D con medidas reales</title>
+  <meta name="description" content="Aplicación gratuita para Windows: dibuja tus ambientes con medidas reales, amóblalos en 3D, recórrelos y obtén el metrado y el presupuesto en soles. Funciona sin internet.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="icon" href="img/icono.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+
+  <header class="barra">
+    <a class="marca" href="#">
+      <img src="img/icono.svg" alt="" width="28" height="28">
+      Amoblador3D
+    </a>
+    <nav aria-label="Secciones">
+      <ul>
+        <li><a href="#que-hace">Qué hace</a></li>
+        <li><a href="#como-usar">Cómo usarla</a></li>
+        <li><a href="#atajos">Atajos</a></li>
+        <li><a href="#descargas" class="nav-descargar">Descargar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- PORTADA: plano interactivo de la casa de ejemplo -->
+    <section class="portada">
+      <div class="portada-texto">
+        <h1>Diseña tu casa antes de comprar un solo mueble.</h1>
+        <p class="entrada">
+          Amoblador3D es una aplicación gratuita para Windows. Dibujas cada ambiente con sus
+          medidas reales, lo amueblas en 3D y te dice cuánta pintura, cerámico y zócalo
+          necesitas, con el presupuesto en soles. Funciona sin internet.
+        </p>
+        <div class="acciones">
+          <a class="boton boton-principal" href="#descargas">Descargar para Windows</a>
+          <a class="boton boton-secundario" href="descargas/05_Manual_de_Usuario.pdf">Leer el manual (PDF)</a>
+        </div>
+        <p class="nota-version">Versión 2.0.0 · Windows 10 u 11 de 64 bits</p>
+      </div>
+
+      <figure class="plano" aria-labelledby="plano-leyenda">
+        <svg id="plano" viewBox="-70 -70 650 530" role="group" aria-label="Plano de la casa de ejemplo con cuatro ambientes">
+          <defs>
+            <pattern id="losa" width="30" height="30" patternUnits="userSpaceOnUse">
+              <path d="M30 0H0V30" fill="none" stroke="#C7CDC9" stroke-width=".8"/>
+            </pattern>
+            <pattern id="tabla" width="12" height="60" patternUnits="userSpaceOnUse">
+              <path d="M12 0V60" fill="none" stroke="#D9C6B2" stroke-width=".8"/>
+            </pattern>
+            <marker id="tope" viewBox="-5 -5 10 10" markerWidth="10" markerHeight="10" orient="auto">
+              <path d="M-4 4L4 -4" stroke="#E0A11B" stroke-width="1.6"/>
+            </marker>
+          </defs>
+
+          <!-- Ambientes (1 m = 60 px) -->
+          <g class="ambiente" tabindex="0" data-nombre="Sala" data-area="20 m²" data-medidas="5.00 × 4.00 m" data-costo="S/ 7,306.70" data-muebles="Sofá, mueble de TV, mesa de centro, librero">
+            <rect class="piso" x="0" y="0" width="300" height="240" fill="url(#losa)"/>
+            <rect class="muro" x="0" y="0" width="300" height="240"/>
+            <rect class="mueble" x="80" y="200" width="120" height="34"/>   <!-- sofá -->
+            <rect class="mueble" x="102" y="8" width="96" height="27"/>    <!-- mueble TV -->
+            <rect class="mueble" x="120" y="100" width="60" height="40"/>  <!-- mesa -->
+            <rect class="mueble" x="8" y="80" width="24" height="70"/>     <!-- librero -->
+            <text x="150" y="172" class="rotulo">Sala</text>
+          </g>
+          <g class="ambiente" tabindex="0" data-nombre="Dormitorio" data-area="11.2 m²" data-medidas="3.50 × 3.20 m" data-costo="S/ 4,488.50" data-muebles="Cama, 2 mesas de noche, cómoda, closet">
+            <rect class="piso" x="300" y="0" width="210" height="192" fill="url(#tabla)"/>
+            <rect class="muro" x="300" y="0" width="210" height="192"/>
+            <rect class="mueble" x="380" y="8" width="84" height="114"/>   <!-- cama -->
+            <rect class="mueble" x="352" y="8" width="26" height="24"/>
+            <rect class="mueble" x="466" y="8" width="26" height="24"/>
+            <rect class="mueble" x="474" y="110" width="30" height="72"/>  <!-- closet -->
+            <text x="420" y="160" class="rotulo">Dormitorio</text>
+          </g>
+          <g class="ambiente" tabindex="0" data-nombre="Cocina" data-area="8.32 m²" data-medidas="3.20 × 2.60 m" data-costo="S/ 7,122.85" data-muebles="Mueble de cocina, refrigeradora, mesa, 2 sillas">
+            <rect class="piso" x="0" y="240" width="192" height="156" fill="url(#losa)"/>
+            <rect class="muro" x="0" y="240" width="192" height="156"/>
+            <rect class="mueble" x="6" y="246" width="36" height="120"/>   <!-- cocina -->
+            <rect class="mueble" x="150" y="350" width="36" height="40"/>  <!-- refri -->
+            <rect class="mueble" x="80" y="300" width="54" height="42"/>   <!-- mesa -->
+            <text x="110" y="378" class="rotulo">Cocina</text>
+          </g>
+          <g class="ambiente" tabindex="0" data-nombre="Baño" data-area="4.32 m²" data-medidas="2.40 × 1.80 m" data-costo="S/ 1,575.45" data-muebles="Inodoro, lavatorio">
+            <rect class="piso" x="192" y="240" width="144" height="108" fill="url(#losa)"/>
+            <rect class="muro" x="192" y="240" width="144" height="108"/>
+            <rect class="mueble" x="290" y="300" width="28" height="40"/>  <!-- inodoro -->
+            <rect class="mueble" x="230" y="320" width="40" height="24"/>  <!-- lavatorio -->
+            <text x="252" y="290" class="rotulo">Baño</text>
+          </g>
+
+          <!-- Puertas y ventanas -->
+          <g class="aberturas" aria-hidden="true">
+            <path d="M210 240 v-36 a36 36 0 0 1 36 36" />
+            <path d="M300 150 h30 a30 30 0 0 1 -30 30" />
+            <path d="M192 300 h-30 a30 30 0 0 0 30 30" />
+            <path d="M40 396 v-36 a36 36 0 0 1 36 36" />
+            <line class="ventana" x1="510" y1="50" x2="510" y2="130"/>
+            <line class="ventana" x1="0" y1="290" x2="0" y2="350"/>
+            <line class="ventana" x1="380" y1="0" x2="460" y2="0"/>
+          </g>
+
+          <!-- Cotas: se dibujan al cargar -->
+          <g class="cotas" aria-hidden="true">
+            <line x1="0" y1="-38" x2="510" y2="-38" marker-start="url(#tope)" marker-end="url(#tope)"/>
+            <line x1="0" y1="-48" x2="0" y2="-6" class="guia"/>
+            <line x1="510" y1="-48" x2="510" y2="-6" class="guia"/>
+            <text x="255" y="-46" class="medida">8.50 m</text>
+
+            <line x1="-38" y1="0" x2="-38" y2="396" marker-start="url(#tope)" marker-end="url(#tope)"/>
+            <line x1="-48" y1="0" x2="-6" y2="0" class="guia"/>
+            <line x1="-48" y1="396" x2="-6" y2="396" class="guia"/>
+            <text x="-46" y="198" class="medida" transform="rotate(-90 -46 198)">6.60 m</text>
+
+            <line x1="0" y1="424" x2="192" y2="424" marker-start="url(#tope)" marker-end="url(#tope)"/>
+            <text x="96" y="446" class="medida">3.20 m</text>
+            <line x1="192" y1="424" x2="336" y2="424" marker-start="url(#tope)" marker-end="url(#tope)"/>
+            <text x="264" y="446" class="medida">2.40 m</text>
+
+            <line x1="538" y1="0" x2="538" y2="192" marker-start="url(#tope)" marker-end="url(#tope)"/>
+            <text x="560" y="96" class="medida" transform="rotate(90 560 96)">3.20 m</text>
+          </g>
+        </svg>
+
+        <figcaption id="plano-leyenda" class="ficha" aria-live="polite">
+          <span class="ficha-titulo" id="ficha-nombre">Casa de ejemplo</span>
+          <dl>
+            <div><dt>Área</dt><dd id="ficha-area">43.84 m²</dd></div>
+            <div><dt>Medidas</dt><dd id="ficha-medidas">4 ambientes, 1 piso</dd></div>
+            <div><dt>Presupuesto</dt><dd id="ficha-costo">S/ 20,493.50</dd></div>
+          </dl>
+          <p id="ficha-muebles">Pasa el cursor o el teclado por un ambiente para ver sus datos.</p>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- QUÉ HACE: recorrido por las vistas -->
+    <section id="que-hace" class="seccion">
+      <div class="encabezado">
+        <h2>Qué hace</h2>
+        <p>
+          En el Perú, siete de cada diez viviendas urbanas se autoconstruyen, y casi siempre se
+          compra sin probar antes cómo queda. Amoblador3D te deja probarlo en la computadora:
+          los muebles tienen su tamaño real, no se enciman ni tapan puertas, y cada cambio
+          actualiza el presupuesto.
+        </p>
+      </div>
+
+      <div class="recorrido">
+        <div class="selector" role="tablist" aria-label="Vistas de la aplicación">
+          <button role="tab" id="t-3d" aria-controls="p-3d" aria-selected="true">Vista 3D</button>
+          <button role="tab" id="t-planta" aria-controls="p-planta" aria-selected="false" tabindex="-1">Planta con cotas</button>
+          <button role="tab" id="t-paseo" aria-controls="p-paseo" aria-selected="false" tabindex="-1">Recorrido</button>
+          <button role="tab" id="t-disenar" aria-controls="p-disenar" aria-selected="false" tabindex="-1">Diseñar muebles</button>
+          <button role="tab" id="t-presup" aria-controls="p-presup" aria-selected="false" tabindex="-1">Presupuesto</button>
+          <button role="tab" id="t-noche" aria-controls="p-noche" aria-selected="false" tabindex="-1">Modo noche</button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-3d" aria-labelledby="t-3d">
+          <img src="img/02_casa_completa_3d.png" alt="Vista 3D de una casa con sala, dormitorio, cocina y baño, con el área y el costo de cada ambiente en el panel derecho" width="1426" height="863" loading="lazy">
+          <div class="panel-texto">
+            <h3>Toda la casa en 3D</h3>
+            <p>Un proyecto puede tener sala, dormitorios, cocina y baño, en hasta cuatro pisos. Arrastra cada ambiente para armar la distribución: los muros se pegan a los vecinos y una puerta pegada a otro ambiente abre el paso.</p>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-planta" aria-labelledby="t-planta" hidden>
+          <img src="img/05_planta_con_cotas.png" alt="Planta 2D de la sala con cotas en metros y el panel de medidas del mueble de TV seleccionado" width="1426" height="863" loading="lazy">
+          <div class="panel-texto">
+            <h3>Planta con medidas</h3>
+            <p>Mira el ambiente desde arriba, con las cotas de cada pared y de cada mueble. Cambia ancho, profundidad, alto, color y acabado desde el panel derecho, y mide cualquier distancia con la tecla M.</p>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-paseo" aria-labelledby="t-paseo" hidden>
+          <img src="img/06_recorrido.png" alt="Vista en primera persona caminando dentro de la sala amoblada" width="1426" height="863" loading="lazy">
+          <div class="panel-texto">
+            <h3>Camina por dentro</h3>
+            <p>Recorre el ambiente a la altura de los ojos con W, A, S y D. No atraviesas paredes ni muebles, así compruebas si de verdad se puede pasar entre la cama y el closet.</p>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-disenar" aria-labelledby="t-disenar" hidden>
+          <img src="img/10_disenador_de_muebles.png" alt="Diseñador de muebles con un mueble armado a partir de cajas y cilindros" width="1426" height="863" loading="lazy">
+          <div class="panel-texto">
+            <h3>Arma tus propios muebles</h3>
+            <p>Si no encuentras el mueble entre los 18 del catálogo, ármalo con cajas, cilindros, esferas y barras medidas en centímetros. También puedes importar modelos 3D .glb o .gltf.</p>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-presup" aria-labelledby="t-presup" hidden>
+          <img src="img/09_presupuesto.png" alt="Ventana de metrado y presupuesto con pintura, cerámico, zócalo y muebles en soles" width="1426" height="863" loading="lazy">
+          <div class="panel-texto">
+            <h3>Metrado y presupuesto</h3>
+            <p>Calcula los m² de piso y de paredes sin contar puertas ni ventanas, los galones de pintura para dos manos y el cerámico con 10 % de desperdicio. Los precios se editan y se exportan a Excel o a un informe PDF.</p>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-noche" aria-labelledby="t-noche" hidden>
+          <img src="img/08_luz_modo_noche.png" alt="Ambiente de noche iluminado solo por las lámparas" width="1426" height="863" loading="lazy">
+          <div class="panel-texto">
+            <h3>Luz de día y de noche</h3>
+            <p>Coloca bombillas, focos y la luz del sol que entra por una ventana. Con la tecla N apagas el sol para ver si las lámparas alcanzan.</p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="datos">
+        <li><strong>18</strong> muebles con medidas editables</li>
+        <li><strong>11</strong> materiales para paredes y piso</li>
+        <li><strong>7</strong> tipos de puerta y vano</li>
+        <li><strong>0</strong> conexiones a internet necesarias</li>
+      </ul>
+    </section>
+
+    <!-- CÓMO USARLA: secuencia real -->
+    <section id="como-usar" class="seccion">
+      <div class="encabezado">
+        <h2>Cómo usarla</h2>
+        <p>Un proyecto típico, de la habitación vacía al presupuesto.</p>
+      </div>
+      <ol class="pasos">
+        <li>
+          <h3>Crea el ambiente</h3>
+          <p>Elige <em>Archivo → Nuevo</em> o empieza desde una plantilla de dormitorio, sala, cocina, baño u oficina (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>). Escribe el ancho, el largo y el alto en metros.</p>
+        </li>
+        <li>
+          <h3>Pon puertas y ventanas</h3>
+          <p>Con <em>+ Puerta</em> y <em>+ Ventana</em> las colocas en la pared que quieras. La aplicación no deja que se superpongan.</p>
+        </li>
+        <li>
+          <h3>Elige los acabados</h3>
+          <p>En la pestaña <em>Ambiente</em> eliges material y color para cada pared, el piso y el zócalo: pintura, ladrillo, cerámico, madera, porcelanato y más.</p>
+        </li>
+        <li>
+          <h3>Amuebla</h3>
+          <p>Arrastra muebles desde el catálogo de la izquierda. El imán los pega a las paredes. Gíralos con <kbd>R</kbd> y ajusta sus medidas y colores en el panel derecho.</p>
+        </li>
+        <li>
+          <h3>Revisa y recorre</h3>
+          <p>Cambia entre la vista 3D, la planta y el recorrido con <kbd>Ctrl</kbd>+<kbd>1</kbd>, <kbd>2</kbd> o <kbd>3</kbd>. Si algo no te convence, <kbd>Ctrl</kbd>+<kbd>Z</kbd> lo deshace.</p>
+        </li>
+        <li>
+          <h3>Saca el presupuesto</h3>
+          <p>Con <kbd>Ctrl</kbd>+<kbd>P</kbd> ves el metrado y el costo; con <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> generas un informe PDF con la planta y la vista 3D. Guarda con <kbd>Ctrl</kbd>+<kbd>S</kbd>.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ATAJOS -->
+    <section id="atajos" class="seccion">
+      <div class="encabezado">
+        <h2>Atajos de teclado</h2>
+        <p>Los más usados. Dentro de la aplicación, <kbd>F1</kbd> muestra la lista completa.</p>
+      </div>
+      <div class="atajos">
+        <dl>
+          <div><dt><kbd>Ctrl</kbd>+<kbd>S</kbd></dt><dd>Guardar el proyecto</dd></div>
+          <div><dt><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></dt><dd>Deshacer / rehacer</dd></div>
+          <div><dt>Flechas</dt><dd>Mover el mueble 5 cm (con <kbd>Shift</kbd>, 1 cm)</dd></div>
+          <div><dt><kbd>R</kbd> / <kbd>Q</kbd> <kbd>E</kbd></dt><dd>Girar 90° / girar 15°</dd></div>
+          <div><dt><kbd>Ctrl</kbd>+<kbd>D</kbd> / <kbd>Supr</kbd></dt><dd>Duplicar / eliminar</dd></div>
+          <div><dt><kbd>L</kbd> / <kbd>G</kbd></dt><dd>Bloquear el mueble / activar el imán</dd></div>
+        </dl>
+        <dl>
+          <div><dt><kbd>Ctrl</kbd>+<kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></dt><dd>Vista 3D, planta o recorrido</dd></div>
+          <div><dt><kbd>Ctrl</kbd>+<kbd>4</kbd></dt><dd>Casa completa</dd></div>
+          <div><dt><kbd>M</kbd></dt><dd>Medir distancias</dd></div>
+          <div><dt><kbd>N</kbd></dt><dd>Modo noche</dd></div>
+          <div><dt><kbd>Ctrl</kbd>+<kbd>P</kbd></dt><dd>Metrado y presupuesto</dd></div>
+          <div><dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></dt><dd>Diseñador de muebles</dd></div>
+        </dl>
+      </div>
+      <p class="raton">Con el ratón en 3D: el botón izquierdo gira la cámara, el derecho la desplaza y la rueda acerca.</p>
+    </section>
+
+    <!-- DESCARGAS -->
+    <section id="descargas" class="seccion descargas">
+      <div class="encabezado">
+        <h2>Descargas</h2>
+        <p>Todo es gratuito. Si tienes dudas para instalar, empieza por el manual de instalación.</p>
+      </div>
+
+      <div class="descargas-grid">
+        <div class="bloque-app">
+          <h3>La aplicación</h3>
+          <ul class="archivos">
+            <li>
+              <a href="https://github.com/alex123floresc-sketch/amoblador3d/releases/latest">
+                <span class="archivo-nombre">Instalador para Windows</span>
+                <span class="archivo-meta">.exe · trae Java incluido, no necesitas instalar nada más</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/alex123floresc-sketch/amoblador3d/releases/latest">
+                <span class="archivo-nombre">Versión portátil (.jar)</span>
+                <span class="archivo-meta">26 MB · necesita Java 21 o superior</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/alex123floresc-sketch/amoblador3d">
+                <span class="archivo-nombre">Código fuente en GitHub</span>
+                <span class="archivo-meta">Java 21, JavaFX y SQLite</span>
+              </a>
+            </li>
+          </ul>
+          <p class="aviso">
+            Al abrir el instalador, Windows puede mostrar <em>"Windows protegió su PC"</em>
+            porque el programa no tiene firma digital. Haz clic en <em>Más información</em> y luego en
+            <em>Ejecutar de todas formas</em>.
+          </p>
+        </div>
+
+        <div class="bloque-docs">
+          <h3>Documentación</h3>
+          <ul class="archivos">
+            <li>
+              <a href="descargas/05_Manual_de_Usuario.pdf">
+                <span class="archivo-nombre">Manual de usuario</span>
+                <span class="archivo-meta">PDF · 2 MB</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/alex123floresc-sketch/amoblador3d/raw/main/documentacion/doc%202/06_Manual_de_Instalacion.docx">
+                <span class="archivo-nombre">Manual de instalación</span>
+                <span class="archivo-meta">Word (.docx)</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/alex123floresc-sketch/amoblador3d/raw/main/documentacion/doc%202/08_Informe_Final.docx">
+                <span class="archivo-nombre">Informe final del proyecto</span>
+                <span class="archivo-meta">Word (.docx)</span>
+              </a>
+            </li>
+          </ul>
+
+          <h3 class="req-titulo">Requisitos del equipo</h3>
+          <table class="requisitos">
+            <thead><tr><th scope="col"></th><th scope="col">Mínimo</th><th scope="col">Recomendado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Sistema</th><td>Windows 10, 64 bits</td><td>Windows 11</td></tr>
+              <tr><th scope="row">Memoria</th><td>4 GB</td><td>8 GB</td></tr>
+              <tr><th scope="row">Video</th><td>Gráficos integrados con 3D</td><td>Tarjeta dedicada</td></tr>
+              <tr><th scope="row">Disco</th><td>300 MB</td><td>1 GB</td></tr>
+              <tr><th scope="row">Pantalla</th><td>1280 × 720</td><td>1920 × 1080</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div>
+      <p class="pie-marca">Amoblador3D 2.0.0</p>
+      <p>Proyecto de la Escuela Profesional de Ingeniería de Sistemas y Software, Universidad Nacional de Juliaca, 2026.</p>
+    </div>
+    <div>
+      <p class="pie-sub">Equipo</p>
+      <p>Alexander Edson Flores Calcina, George James Sandia Condori, Erick Reison Huanca Tiña y Brayan Flores Ccori.</p>
+      <p class="pie-sub">Docente</p>
+      <p>Noe Tipo Mamani</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
