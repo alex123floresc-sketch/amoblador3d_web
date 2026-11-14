@@ -547,3 +547,39 @@ button.ventana-app:focus-visible { outline: 2px solid var(--azul-claro); outline
 .arriba.visible { opacity: 1; pointer-events: auto; transform: none; }
 .arriba:hover { background: var(--azul); }
 .codigo-cabecera .codigo-ruta { min-width: 0; overflow-wrap: anywhere; }
+
+/* ---------- Preguntas frecuentes ---------- */
+.faq { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(2rem, 5vw, 4rem); align-items: start; }
+@media (max-width: 52rem) { .faq { grid-template-columns: 1fr; } }
+.faq details { border-bottom: 1px solid var(--borde); }
+.faq details:first-child, .faq details:nth-child(2) { border-top: 1px solid var(--borde); }
+@media (max-width: 52rem) { .faq details:nth-child(2) { border-top: 0; } }
+.faq summary {
+  list-style: none; cursor: pointer; position: relative;
+  padding: 1.05rem 2.5rem 1.05rem 0;
+  font-family: var(--display); font-weight: 700; font-size: 1.15rem; color: #fff;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; position: absolute; right: .35rem; top: 50%; width: 10px; height: 10px; margin-top: -7px;
+  border-right: 2px solid var(--azul-claro); border-bottom: 2px solid var(--azul-claro);
+  transform: rotate(45deg); transition: transform .2s;
+}
+.faq details[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
+.faq summary:hover { color: var(--azul-texto); }
+.faq summary:focus-visible { outline-offset: 2px; }
+.faq details p { margin: 0 0 1.1rem; color: var(--texto-2); max-width: 36em; }
+.faq code, .huellas code { font-family: Consolas, ui-monospace, monospace; font-size: .88em; color: var(--azul-texto); }
+@media (prefers-reduced-motion: no-preference) {
+  .faq details[open] p { animation: aparecer-panel .2s ease-out; }
+}
+
+/* Comprobar la descarga */
+.huellas { margin: 1.25rem 0 0; border: 1px solid var(--borde); border-radius: var(--radio); background: var(--barra); }
+.huellas summary { cursor: pointer; padding: .75rem 1rem; font-weight: 700; color: var(--texto); }
+.huellas summary:hover { color: #fff; }
+.huellas > p { margin: 0 1rem .75rem; font-size: .9rem; color: var(--texto-2); }
+.huellas dl { margin: 0 1rem 1rem; }
+.huellas dl > div { padding: .5rem 0; border-top: 1px solid var(--borde); }
+.huellas dt { font-size: .85rem; font-weight: 700; color: var(--texto); }
+.huellas dd { margin: .15rem 0 0; overflow-wrap: anywhere; font-size: .8rem; }

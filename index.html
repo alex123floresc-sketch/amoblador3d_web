@@ -9,7 +9,15 @@
   <meta name="theme-color" content="#1d2125">
   <meta property="og:title" content="Amoblador3D: diseña tu casa en 3D con medidas reales">
   <meta property="og:description" content="Diseña y amuebla tus ambientes en 3D con medidas reales y obtén el metrado y el presupuesto en soles. Para Windows, sin internet.">
-  <meta property="og:image" content="img/02_casa_completa_3d.png">
+  <meta property="og:image" content="https://alex123floresc-sketch.github.io/amoblador3d_web/img/02_casa_completa_3d.png">
+  <meta property="og:image:width" content="1426">
+  <meta property="og:image:height" content="863">
+  <meta property="og:url" content="https://alex123floresc-sketch.github.io/amoblador3d_web/">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="Amoblador3D">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alex123floresc-sketch.github.io/amoblador3d_web/">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Amoblador3D", "softwareVersion": "2.0.0", "operatingSystem": "Windows 10, Windows 11", "applicationCategory": "DesignApplication", "description": "Diseña y amuebla tus ambientes en 3D con medidas reales y obtén el metrado y el presupuesto en soles. Funciona sin internet.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "PEN"}, "downloadUrl": "https://github.com/alex123floresc-sketch/amoblador3d/releases/download/v2.0.0/Amoblador3D-2.0.0.exe", "fileSize": "65MB", "inLanguage": "es", "author": {"@type": "Organization", "name": "FSHF"}, "screenshot": "https://alex123floresc-sketch.github.io/amoblador3d_web/img/02_casa_completa_3d.png"}</script>
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +44,7 @@
         <li><a href="#atajos">Atajos</a></li>
         <li><a href="#codigo">Código</a></li>
         <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#preguntas">Ayuda</a></li>
         <li><a href="#descargas" class="nav-descargar">Descargar</a></li>
       </ul>
     </nav>
@@ -496,6 +505,15 @@
               </a>
             </li>
           </ul>
+          <details class="huellas">
+            <summary>Comprobar que la descarga es original (SHA-256)</summary>
+            <p>En PowerShell, dentro de Descargas: <code>Get-FileHash .\Amoblador3D-2.0.0.exe</code>. El resultado debe ser igual al de esta lista:</p>
+            <dl>
+              <div><dt>Amoblador3D-2.0.0.exe</dt><dd><code>1348E9FF21CF0A01F65BE1B7E10D308A1582696652B6D74DB6ACEB407D966856</code></dd></div>
+              <div><dt>Amoblador3D-2.0.0-windows.zip</dt><dd><code>8668A9A1740CF991F6D3755677FD1B06A5088094D08C2F6CC12958B0E3CC9A74</code></dd></div>
+              <div><dt>amoblador3d.jar</dt><dd><code>8578E210B61B669770C3836B1E2B5B36EDC0D6930A68F4FE00DD35F3E6639BF3</code></dd></div>
+            </dl>
+          </details>
           <p class="aviso">
             Al abrir el instalador, Windows puede mostrar <em>"Windows protegió su PC"</em>
             porque el programa no tiene firma digital. Haz clic en <em>Más información</em> y luego en
@@ -517,7 +535,7 @@
               <a class="con-tipo" href="descargas/06_Manual_de_Instalacion.pdf">
                 <span class="tipo tipo-pdf" aria-hidden="true">PDF</span>
                 <span class="archivo-nombre">Manual de instalación y ejecución</span>
-                <span class="archivo-meta">PDF · instalador, archivo .jar, código fuente y errores comunes</span>
+                <span class="archivo-meta">PDF · 27 páginas · instalador, ZIP, .jar y código fuente, paso a paso</span>
               </a>
             </li>
             <li>
@@ -550,6 +568,47 @@
         </div>
       </div>
     </section>
+    <!-- PREGUNTAS FRECUENTES -->
+    <section id="preguntas" class="seccion">
+      <div class="encabezado">
+        <h2>Preguntas frecuentes</h2>
+        <p>Si tu duda no está aquí, revisa el manual de instalación y ejecución o el manual de usuario.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>¿Es gratis?</summary>
+          <p>Sí. Amoblador3D, sus manuales y su código fuente se descargan sin costo desde esta página.</p>
+        </details>
+        <details>
+          <summary>¿Necesito internet?</summary>
+          <p>Solo para descargarla. Después funciona sin conexión: los proyectos, el catálogo y el presupuesto se guardan en tu computadora.</p>
+        </details>
+        <details>
+          <summary>¿Funciona en Mac o en Linux?</summary>
+          <p>Por ahora los instaladores son solo para Windows 10 y 11 de 64 bits. En otros sistemas se puede ejecutar desde el código fuente con Java 21, pero no está probado ni tiene soporte oficial.</p>
+        </details>
+        <details>
+          <summary>¿Por qué Windows dice «Windows protegió su PC»?</summary>
+          <p>Porque el instalador todavía no tiene firma digital, no porque tenga un problema. Pulsa <em>Más información</em> y luego <em>Ejecutar de todas formas</em>. Si quieres comprobar que el archivo es el original, usa su huella SHA-256 (en Descargas).</p>
+        </details>
+        <details>
+          <summary>¿Dónde se guardan mis proyectos?</summary>
+          <p>En la carpeta <code>%APPDATA%\Amoblador3D</code> de tu usuario. También puedes exportar cada proyecto como archivo <code>.amob3d</code> para guardarlo o abrirlo en otra computadora.</p>
+        </details>
+        <details>
+          <summary>¿Los precios del presupuesto son reales?</summary>
+          <p>Son precios referenciales en soles. Puedes cambiar cualquiera con doble clic en la tabla del presupuesto y se guardan para todos tus proyectos.</p>
+        </details>
+        <details>
+          <summary>¿Puedo usar mis propios muebles?</summary>
+          <p>Sí: arma muebles nuevos con el Diseñador de muebles o importa modelos 3D en formato .glb o .gltf, con sus medidas reales.</p>
+        </details>
+        <details>
+          <summary>¿Cómo la desinstalo?</summary>
+          <p>En <em>Configuración → Aplicaciones → Aplicaciones instaladas</em>, busca Amoblador3D y elige Desinstalar. Tus proyectos no se borran; si también quieres borrarlos, elimina la carpeta <code>%APPDATA%\Amoblador3D</code>.</p>
+        </details>
+      </div>
+    </section>
   </main>
 
   <footer class="pie">
@@ -563,6 +622,7 @@
         <li><a href="#que-hace">Qué hace</a></li>
         <li><a href="#como-usar">Cómo usarla</a></li>
         <li><a href="#descargas">Descargas</a></li>
+        <li><a href="#preguntas">Preguntas frecuentes</a></li>
       </ul>
     </nav>
     <div>
