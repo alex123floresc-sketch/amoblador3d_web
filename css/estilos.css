@@ -385,7 +385,7 @@ kbd {
 
 /* ---------- Código fuente ---------- */
 .codigo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
-@media (max-width: 60rem) { .codigo-grid { grid-template-columns: 1fr; } }
+@media (max-width: 60rem) { .codigo-grid { grid-template-columns: minmax(0, 1fr); } }
 .codigo-titulo { font-size: var(--t-1); margin-bottom: 1rem; }
 .arbol, .codigo {
   margin: 0; overflow-x: auto;
@@ -583,3 +583,23 @@ button.ventana-app:focus-visible { outline: 2px solid var(--azul-claro); outline
 .huellas dl > div { padding: .5rem 0; border-top: 1px solid var(--borde); }
 .huellas dt { font-size: .85rem; font-weight: 700; color: var(--texto); }
 .huellas dd { margin: .15rem 0 0; overflow-wrap: anywhere; font-size: .8rem; }
+
+/* Fragmentos: pestañas de archivo, como las de un editor de código */
+.selector-archivos {
+  display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+  width: 100%; padding: 0; gap: 0; margin-bottom: 1rem;
+  background: transparent; border: 0; border-bottom: 1px solid var(--borde); border-radius: 0;
+}
+.selector-archivos::-webkit-scrollbar { display: none; }
+.selector-archivos button {
+  flex: none; white-space: nowrap;
+  font: .84rem Consolas, "Cascadia Mono", ui-monospace, monospace;
+  padding: .6rem .95rem .55rem; border-radius: 0;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.selector-archivos button:hover { background: var(--barra); }
+.selector-archivos button[aria-selected="true"] {
+  background: var(--profundo); color: #fff; border-bottom-color: var(--azul-claro);
+}
+.selector-archivos button:focus-visible { outline-offset: -2px; }
+.codigo-nota strong { color: #fff; }

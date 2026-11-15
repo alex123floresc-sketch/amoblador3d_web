@@ -78,6 +78,13 @@ document.querySelectorAll('.selector[role="tablist"]').forEach((lista) => {
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   secciones.forEach((s) => obs.observe(s));
+  // En la portada no hay sección activa
+  const portada = document.querySelector('.portada');
+  if (portada) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) enlaces.forEach((a) => a.removeAttribute('aria-current'));
+    }, { rootMargin: '-45% 0px -50% 0px' }).observe(portada);
+  }
 })();
 
 // 5. Menú en pantallas chicas
