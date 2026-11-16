@@ -159,7 +159,7 @@
         </svg>
 
         <figcaption id="plano-leyenda" class="ficha" aria-live="polite">
-          <span class="ficha-titulo" id="ficha-nombre">Toda la casa</span>
+          <span class="ficha-titulo" id="ficha-nombre">Casa de ejemplo</span>
           <dl>
             <div><dt>Área</dt><dd id="ficha-area">43.84 m²</dd></div>
             <div><dt>Medidas</dt><dd id="ficha-medidas">4 ambientes, 1 piso</dd></div>
@@ -364,13 +364,13 @@
         </div>
         <div>
           <h3 class="codigo-titulo">Fragmentos del código</h3>
-          <div class="selector selector-archivos" role="tablist" aria-label="Fragmentos del código">
-            <button role="tab" id="t-cod0" aria-controls="p-cod0" aria-selected="true">FSHFFootprint.java</button>
-            <button role="tab" id="t-cod1" aria-controls="p-cod1" aria-selected="false" tabindex="-1">FSHFPurchaseSpec.java</button>
-            <button role="tab" id="t-cod2" aria-controls="p-cod2" aria-selected="false" tabindex="-1">FSHFDatabase.java</button>
+          <div class="selector" role="tablist" aria-label="Fragmentos del código">
+          <button role="tab" id="t-cod0" aria-controls="p-cod0" aria-selected="true">Choques entre muebles</button>
+          <button role="tab" id="t-cod1" aria-controls="p-cod1" aria-selected="false" tabindex="-1">Cantidad de material</button>
+          <button role="tab" id="t-cod2" aria-controls="p-cod2" aria-selected="false" tabindex="-1">Migración de la base de datos</button>
           </div>
         <div class="codigo-panel" role="tabpanel" id="p-cod0" aria-labelledby="t-cod0">
-          <div class="codigo-cabecera"><p class="codigo-ruta"><code>pe.edu.unaj.amoblador3d.model</code>, líneas 28 a 36</p>
+          <div class="codigo-cabecera"><p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/model/FSHFFootprint.java</code>, líneas 28 a 36</p>
             <button type="button" class="copiar">Copiar</button>
           </div>
           <pre class="codigo"><code><span class="ln">28</span>public boolean overlaps(FSHFFootprint other) {
@@ -382,10 +382,10 @@
 <span class="ln">34</span>    }
 <span class="ln">35</span>    return true;
 <span class="ln">36</span>}</code></pre>
-          <p class="codigo-nota"><strong>Choques entre muebles.</strong> Teorema del eje separador: si en alguno de los cuatro ejes las proyecciones de los dos muebles no se tocan, no chocan.</p>
+          <p class="codigo-nota">Teorema del eje separador: si en alguno de los cuatro ejes las proyecciones de los dos muebles no se tocan, no chocan.</p>
         </div>
         <div class="codigo-panel" role="tabpanel" id="p-cod1" aria-labelledby="t-cod1" hidden>
-          <div class="codigo-cabecera"><p class="codigo-ruta"><code>pe.edu.unaj.amoblador3d.estimate</code>, líneas 22 a 27</p>
+          <div class="codigo-cabecera"><p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/estimate/FSHFPurchaseSpec.java</code>, líneas 22 a 27</p>
             <button type="button" class="copiar">Copiar</button>
           </div>
           <pre class="codigo"><code><span class="ln">22</span>public double quantity(double area) {
@@ -394,10 +394,10 @@
 <span class="ln">25</span>
 <span class="ln">26</span>    return Math.ceil(raw / step - 1e-9) * step;
 <span class="ln">27</span>}</code></pre>
-          <p class="codigo-nota"><strong>Cantidad de material.</strong> Convierte m² en lo que hay que comprar: manos de pintura, desperdicio, rendimiento y redondeo a la unidad de venta.</p>
+          <p class="codigo-nota">Convierte m² en lo que hay que comprar: manos de pintura, desperdicio, rendimiento y redondeo a la unidad de venta.</p>
         </div>
         <div class="codigo-panel" role="tabpanel" id="p-cod2" aria-labelledby="t-cod2" hidden>
-          <div class="codigo-cabecera"><p class="codigo-ruta"><code>pe.edu.unaj.amoblador3d.persistence</code>, líneas 235 a 254</p>
+          <div class="codigo-cabecera"><p class="codigo-ruta"><code>src/main/java/pe/edu/unaj/amoblador3d/persistence/FSHFDatabase.java</code>, líneas 235 a 254</p>
             <button type="button" class="copiar">Copiar</button>
           </div>
           <pre class="codigo"><code><span class="ln">235</span>private void migrate() throws SQLException {
@@ -420,7 +420,7 @@
 <span class="ln">252</span>        });
 <span class="ln">253</span>    }
 <span class="ln">254</span>}</code></pre>
-          <p class="codigo-nota"><strong>Migración de la base de datos.</strong> Aplica uno por uno, dentro de una transacción, los cambios de esquema pendientes; los proyectos se conservan al actualizar.</p>
+          <p class="codigo-nota">Aplica uno por uno, dentro de una transacción, los cambios de esquema pendientes; los proyectos se conservan al actualizar.</p>
         </div>
         </div>
       </div>
