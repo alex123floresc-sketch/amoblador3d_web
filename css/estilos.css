@@ -1,4 +1,4 @@
-/* Amoblador3D: sitio de presentación
+/* Space Cat: sitio de presentación
    Paleta tomada de la aplicación (src/main/resources/ui/app.css y FSHFOverlay.java):
    el mismo tema oscuro, el azul de los botones, el violeta de "Diseñar mueble" y el amarillo de las cotas. */
 
@@ -244,7 +244,7 @@ kbd {
   box-shadow: 0 24px 50px -24px rgb(0 0 0 / .75);
 }
 .ventana-app::before {
-  content: "Amoblador3D"; display: flex; align-items: center;
+  content: "Space Cat"; display: flex; align-items: center;
   height: 30px; padding: 0 12px; font-size: .78rem; color: var(--tenue);
   background:
     linear-gradient(var(--tenue) 0 0) no-repeat right 18px center / 10px 1.5px,
@@ -583,3 +583,53 @@ button.ventana-app:focus-visible { outline: 2px solid var(--azul-claro); outline
 .huellas dl > div { padding: .5rem 0; border-top: 1px solid var(--borde); }
 .huellas dt { font-size: .85rem; font-weight: 700; color: var(--texto); }
 .huellas dd { margin: .15rem 0 0; overflow-wrap: anywhere; font-size: .8rem; }
+
+/* ---------- Plano: área de cada ambiente, escala y norte ---------- */
+.ambiente .area {
+  font-family: var(--letra); font-weight: 400; font-size: 13px;
+  text-anchor: middle; fill: var(--texto-2); font-variant-numeric: tabular-nums;
+}
+.ambiente .piso { transition: opacity .2s; }
+.ambiente:hover .area, .ambiente:focus-visible .area, .ambiente.activo .area { fill: var(--cota); }
+#plano:has(.ambiente:hover, .ambiente:focus-visible) .ambiente:not(:hover, :focus-visible) .piso { opacity: .55; }
+.escala rect { fill: none; stroke: var(--texto-2); stroke-width: 1.2; }
+.escala .lleno { fill: var(--texto-2); }
+.escala text, .norte text {
+  font-family: var(--letra); font-weight: 700; font-size: 12px; text-anchor: middle; fill: var(--texto-2);
+}
+.norte circle { fill: none; stroke: var(--borde); stroke-width: 1.4; }
+.norte path { fill: var(--texto-2); }
+
+/* Pie: alineado con el ancho del contenido en monitores anchos */
+.pie { padding-inline: max(var(--margen), calc((100% - var(--ancho)) / 2 + var(--margen))); }
+
+/* Pasos: la línea punteada no sale de su columna */
+.pasos li::after { right: 1rem; }
+
+/* ---------- Novedades 2.1.0 ---------- */
+.novedades {
+  display: grid; gap: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-rows: auto auto;
+}
+.novedad { margin: 0; display: grid; gap: .9rem; align-content: start; }
+.novedad-grande { grid-row: span 2; }
+.novedad h3 { font-size: var(--t-1); margin-bottom: .35rem; }
+.novedad-grande h3 { font-size: var(--t-2); }
+.novedad p { margin: 0; color: var(--texto-2); max-width: 40em; }
+@media (max-width: 52rem) {
+  .novedades { grid-template-columns: 1fr; }
+  .novedad-grande { grid-row: auto; }
+}
+.cambios {
+  list-style: none; padding: 0; margin: clamp(2rem, 4vw, 3rem) 0 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem clamp(1.5rem, 3vw, 2.5rem);
+}
+.cambios li { border-top: 2px solid var(--cota); padding-top: .9rem; color: var(--texto-2); }
+.cambios strong { display: block; color: #fff; font-family: var(--display); font-size: 1.1rem; margin-bottom: .25rem; }
+@media (max-width: 52rem) { .cambios { grid-template-columns: 1fr; } }
+
+/* Marca: el gato de Space Cat */
+.marca img, .pie-marca img { width: auto; }
+.marca img { height: 30px; }
+.pie-marca img { height: 28px; }

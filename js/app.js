@@ -1,8 +1,11 @@
-// Amoblador3D: interacción del sitio
+// Space Cat: interacción del sitio
 
-// 1. Plano de la portada: muestra los datos del ambiente señalado
+// 1. Plano de la portada: piso 1, piso 2 o 3D, y datos del ambiente señalado
 (() => {
-  const ambientes = document.querySelectorAll('.ambiente');
+  const figura = document.querySelector('.plano');
+  if (!figura) return;
+  const img = figura.querySelector('.plano-3d');
+  const niveles = [...figura.querySelectorAll('.nivel')];
   const campos = {
     nombre: document.getElementById('ficha-nombre'),
     area: document.getElementById('ficha-area'),
@@ -10,22 +13,39 @@
     costo: document.getElementById('ficha-costo'),
     muebles: document.getElementById('ficha-muebles'),
   };
-  const casa = Object.fromEntries(Object.entries(campos).map(([k, el]) => [k, el.textContent]));
-
+  const total = campos.muebles.textContent;
+  let resumen = Object.fromEntries(Object.entries(campos).map(([k, el]) => [k, el.textContent]));
   const mostrar = (datos) => Object.entries(campos).forEach(([k, el]) => { el.textContent = datos[k]; });
 
-  ambientes.forEach((g) => {
-    g.setAttribute('aria-label', `${g.dataset.nombre}: ${g.dataset.area}, ${g.dataset.costo}`);
+  const verPiso = (n) => {
+    const g = niveles.find((x) => x.dataset.piso === n);
+    niveles.forEach((x) => { x.hidden = x !== g; });
+    resumen = { nombre: `Piso ${n}`, area: g.dataset.area, medidas: g.dataset.medidas, costo: g.dataset.costo, muebles: total };
+    mostrar(resumen);
+  };
+
+  figura.querySelectorAll('.ambiente').forEach((g) => {
+    g.setAttribute('aria-label', `${g.dataset.nombre}: ${g.dataset.medidas}, ${g.dataset.area}, ${g.dataset.costo}`);
     const activar = () => {
-      ambientes.forEach((o) => o.classList.toggle('activo', o === g));
-      mostrar({ ...g.dataset, muebles: g.dataset.muebles });
+      figura.querySelectorAll('.ambiente').forEach((o) => o.classList.toggle('activo', o === g));
+      mostrar({ ...g.dataset });
     };
-    const soltar = () => { g.classList.remove('activo'); mostrar(casa); };
+    const soltar = () => { g.classList.remove('activo'); mostrar(resumen); };
     g.addEventListener('mouseenter', activar);
     g.addEventListener('focus', activar);
     g.addEventListener('click', activar);
     g.addEventListener('mouseleave', soltar);
     g.addEventListener('blur', soltar);
+  });
+
+  figura.querySelectorAll('.conmutador button').forEach((b, _, todos) => {
+    b.addEventListener('click', () => {
+      const en3d = b.dataset.vista === '3d';
+      todos.forEach((o) => o.setAttribute('aria-pressed', o === b));
+      figura.classList.toggle('en-3d', en3d);
+      img.hidden = !en3d;
+      if (!en3d) verPiso(b.dataset.vista);
+    });
   });
 })();
 
@@ -51,20 +71,6 @@ document.querySelectorAll('.selector[role="tablist"]').forEach((lista) => {
     });
   });
 });
-
-// 3. Portada: alternar entre el plano y la vista 3D del ejemplo
-(() => {
-  const figura = document.querySelector('.plano');
-  const img = figura.querySelector('.plano-3d');
-  figura.querySelectorAll('.conmutador button').forEach((b, _, todos) => {
-    b.addEventListener('click', () => {
-      const en3d = b.dataset.vista === '3d';
-      todos.forEach((o) => o.setAttribute('aria-pressed', o === b));
-      figura.classList.toggle('en-3d', en3d);
-      img.hidden = !en3d;
-    });
-  });
-})();
 
 // 4. Barra: marca la sección visible
 (() => {

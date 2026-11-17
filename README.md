@@ -1,6 +1,6 @@
-# Amoblador3D: sitio web
+# Space Cat: sitio web
 
-Página de presentación y descargas de [Amoblador3D](https://github.com/alex123floresc-sketch/amoblador3d),
+Página de presentación y descargas de [Space Cat] (antes Amoblador3D)(https://github.com/alex123floresc-sketch/amoblador3d),
 aplicación de escritorio para diseñar interiores en 3D con medidas reales y estimar el presupuesto.
 
 Es HTML, CSS y JavaScript sin dependencias: abre `index.html` en el navegador para verla.
