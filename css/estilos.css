@@ -643,7 +643,7 @@ button.ventana-app:focus-visible { outline: 2px solid var(--azul-claro); outline
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem clamp(1.25rem, 3vw, 2rem);
 }
 .instalar-pasos li { counter-increment: inst; display: grid; gap: .7rem; align-content: start; }
-.instalar-pasos .ventana-app img { aspect-ratio: 4 / 3; object-fit: cover; object-position: top; }
+.instalar-pasos .ventana-app img { aspect-ratio: 4 / 3; object-fit: cover; object-position: left top; }
 .instalar-pasos h4 { margin: 0; font-family: var(--display); font-size: 1.1rem; color: #fff; display: flex; gap: .6rem; align-items: center; }
 .instalar-pasos h4::before {
   content: counter(inst); display: grid; place-items: center; width: 1.8rem; height: 1.8rem; flex: none;
@@ -653,3 +653,10 @@ button.ventana-app:focus-visible { outline: 2px solid var(--azul-claro); outline
 .instalar-pasos code { font-family: Consolas, ui-monospace, monospace; font-size: .88em; color: var(--azul-texto); }
 @media (max-width: 60rem) { .instalar-pasos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 36rem) { .instalar-pasos { grid-template-columns: 1fr; } }
+
+/* Otras formas de instalar */
+.instalar .otras { margin-top: clamp(3rem, 6vw, 4rem); }
+.otra-forma { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--borde); }
+.otra-titulo { margin: 0; font-family: var(--display); font-size: var(--t-1); color: #fff; }
+.otra-nota { margin: .3rem 0 1.25rem; color: var(--tenue); }
+.otra-forma .instalar-pasos { counter-reset: inst; }
