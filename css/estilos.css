@@ -633,3 +633,23 @@ button.ventana-app:focus-visible { outline: 2px solid var(--azul-claro); outline
 .marca img, .pie-marca img { width: auto; }
 .marca img { height: 30px; }
 .pie-marca img { height: 28px; }
+
+/* ---------- Cómo instalar: secuencia real de pantallas ---------- */
+.instalar { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.instalar h3 { font-size: var(--t-2); margin-bottom: .6rem; }
+.instalar-entrada { margin: 0 0 1.75rem; color: var(--texto-2); max-width: 44em; }
+.instalar-pasos {
+  list-style: none; padding: 0; margin: 0; counter-reset: inst;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem clamp(1.25rem, 3vw, 2rem);
+}
+.instalar-pasos li { counter-increment: inst; display: grid; gap: .7rem; align-content: start; }
+.instalar-pasos .ventana-app img { aspect-ratio: 4 / 3; object-fit: cover; object-position: top; }
+.instalar-pasos h4 { margin: 0; font-family: var(--display); font-size: 1.1rem; color: #fff; display: flex; gap: .6rem; align-items: center; }
+.instalar-pasos h4::before {
+  content: counter(inst); display: grid; place-items: center; width: 1.8rem; height: 1.8rem; flex: none;
+  border-radius: var(--radio); background: var(--violeta); color: #fff; font-size: 1rem;
+}
+.instalar-pasos p { margin: 0; color: var(--texto-2); font-size: .95rem; }
+.instalar-pasos code { font-family: Consolas, ui-monospace, monospace; font-size: .88em; color: var(--azul-texto); }
+@media (max-width: 60rem) { .instalar-pasos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 36rem) { .instalar-pasos { grid-template-columns: 1fr; } }
