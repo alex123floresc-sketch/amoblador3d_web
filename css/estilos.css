@@ -551,3 +551,6 @@ button.ventana-app:hover .ampliar-pista, button.ventana-app:focus-visible .ampli
 @media (prefers-reduced-motion: no-preference) {
   .boton:hover { transform: translate(-2px, -2px) rotate(-1.5deg); }
 }
+
+/* Pulido: los códigos en línea que se parten en dos renglones conservan su fondo en ambos */
+.faq code, .huellas code, .instalar-pasos code, .codigo-ruta code { -webkit-box-decoration-break: clone; box-decoration-break: clone; }
