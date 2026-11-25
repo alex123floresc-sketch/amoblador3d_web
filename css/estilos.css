@@ -554,3 +554,17 @@ button.ventana-app:hover .ampliar-pista, button.ventana-app:focus-visible .ampli
 
 /* Pulido: los códigos en línea que se parten en dos renglones conservan su fondo en ambos */
 .faq code, .huellas code, .instalar-pasos code, .codigo-ruta code { -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* Capturas como viñetas: tinta gruesa y sombra de trama detrás de la sombra dura */
+.ventana-app, .plano { border-width: 4px; box-shadow: 6px 6px 0 var(--tinta), 12px 12px 0 rgb(17 17 17 / .14); }
+button.ventana-app:hover { box-shadow: 9px 9px 0 var(--tinta), 15px 15px 0 rgb(17 17 17 / .14); }
+
+/* Globo de diálogo: el texto junto a la captura apunta hacia ella */
+.panel-texto { position: relative; border-radius: 1.1rem; }
+.panel-texto::before, .panel-texto::after { content: ""; position: absolute; width: 0; height: 0; border-style: solid; }
+.panel-texto::before { left: -27px; bottom: 1.6rem; border-width: 12px 26px 12px 0; border-color: transparent var(--tinta) transparent transparent; }
+.panel-texto::after { left: -20px; bottom: calc(1.6rem + 4px); border-width: 8px 20px 8px 0; border-color: transparent var(--blanco) transparent transparent; }
+@media (max-width: 52rem) {
+  .panel-texto::before { left: 2rem; top: -27px; bottom: auto; border-width: 0 12px 26px 12px; border-color: transparent transparent var(--tinta) transparent; }
+  .panel-texto::after { left: calc(2rem + 4px); top: -20px; bottom: auto; border-width: 0 8px 20px 8px; border-color: transparent transparent var(--blanco) transparent; }
+}
