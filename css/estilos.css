@@ -497,3 +497,57 @@ button.ventana-app:hover .ampliar-pista, button.ventana-app:focus-visible .ampli
 ::-webkit-scrollbar { width: 14px; height: 12px; }
 ::-webkit-scrollbar-track { background: var(--papel); border-left: 2px solid var(--tinta); }
 ::-webkit-scrollbar-thumb { background: var(--tinta); }
+
+/* =====================================================================
+   Línea de cómic
+   Rótulos delineados con sombra de tinta, trama de puntos de imprenta
+   (Ben-Day) sobre los bloques amarillos y líneas de acción en la portada.
+   ===================================================================== */
+:root {
+  --trama: radial-gradient(rgb(17 17 17 / .16) 1.1px, transparent 1.5px);
+  --trama-paso: 7px 7px;
+}
+
+/* Rótulos: letra blanca con contorno de tinta y sombra desplazada */
+.encabezado h2 {
+  color: var(--blanco);
+  -webkit-text-stroke: 3px var(--tinta);
+  paint-order: stroke fill;
+  text-shadow: 4px 4px 0 var(--tinta);
+}
+.encabezado h2::before { -webkit-text-stroke: 0; text-shadow: none; }
+.ingenieria .encabezado h2 { color: var(--cota); -webkit-text-stroke: 0; text-shadow: 4px 4px 0 #3b3b3b; }
+
+.portada h1 { text-shadow: 4px 4px 0 var(--cota); }
+
+/* Líneas de acción detrás de la portada */
+.portada { position: relative; isolation: isolate; }
+.portada::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg at 72% 50%, rgb(17 17 17 / .07) 0 1.2deg, transparent 1.2deg 7deg);
+  -webkit-mask-image: radial-gradient(circle at 72% 50%, transparent 0 18rem, #000 40rem);
+          mask-image: radial-gradient(circle at 72% 50%, transparent 0 18rem, #000 40rem);
+}
+@media (max-width: 62rem) { .portada::before { display: none; } }
+
+/* Trama de puntos sobre el amarillo */
+.marca, .datos li:nth-child(odd), .publico > div:nth-child(4n+1), .faq summary::after,
+.pie, .visor form, .aviso, .arriba {
+  background-image: var(--trama); background-size: var(--trama-paso);
+}
+.aviso { background-image: var(--trama), repeating-linear-gradient(-45deg, var(--cota) 0 14px, #ffdc85 14px 28px); background-size: var(--trama-paso), auto; }
+@media (max-width: 46rem) {
+  .datos li:nth-child(odd) { background-image: none; }
+  .datos li:nth-child(1), .datos li:nth-child(4) { background-image: var(--trama); }
+}
+
+/* Viñetas: tinta más gruesa y sombra de trama bajo la sombra dura */
+.panel-texto, .pasos li, .cambios li, .faq details, .publico > div {
+  border-width: 4px;
+  box-shadow: 4px 4px 0 var(--tinta), 9px 9px 0 rgb(17 17 17 / .14);
+}
+
+/* Botones: se inclinan un poco al pasar, como un golpe de viñeta */
+@media (prefers-reduced-motion: no-preference) {
+  .boton:hover { transform: translate(-2px, -2px) rotate(-1.5deg); }
+}
