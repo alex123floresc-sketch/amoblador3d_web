@@ -568,3 +568,65 @@ button.ventana-app:hover { box-shadow: 9px 9px 0 var(--tinta), 15px 15px 0 rgb(1
   .panel-texto::before { left: 2rem; top: -27px; bottom: auto; border-width: 0 12px 26px 12px; border-color: transparent transparent var(--tinta) transparent; }
   .panel-texto::after { left: calc(2rem + 4px); top: -20px; bottom: auto; border-width: 0 8px 20px 8px; border-color: transparent transparent var(--blanco) transparent; }
 }
+
+/* =====================================================================
+   Página de cómic pop-art (colores fuertes)
+   Rayos de color en la portada, explosiones con el número de sección,
+   rótulos amarillos con contorno, viñetas de colores primarios con trama
+   y tarjetas ligeramente inclinadas.
+   ===================================================================== */
+:root {
+  --pop-amarillo: #ffd23f;
+  --pop-naranja: #ff9f1c;
+  --pop-rojo: #e8312b;
+  --pop-cian: #4cc3ee;
+  --pop-magenta: #ff6b9a;
+  --pop-verde: #7ccf54;
+  --estallido: polygon(50% 0%, 59.3% 15.2%, 75% 6.7%, 75.5% 24.5%, 93.3% 25%, 84.8% 40.7%, 100% 50%, 84.8% 59.3%, 93.3% 75%, 75.5% 75.5%, 75% 93.3%, 59.3% 84.8%, 50% 100%, 40.7% 84.8%, 25% 93.3%, 24.5% 75.5%, 6.7% 75%, 15.2% 59.3%, 0% 50%, 15.2% 40.7%, 6.7% 25%, 24.5% 24.5%, 25% 6.7%, 40.7% 15.2%);
+}
+
+/* Portada: rayos amarillos y naranjas que salen del plano */
+.portada::before {
+  background: var(--trama), repeating-conic-gradient(from 0deg at 72% 50%, var(--pop-amarillo) 0 4deg, var(--pop-naranja) 4deg 8deg);
+  background-size: var(--trama-paso), auto;
+  opacity: .55;
+}
+
+/* Rótulos: letra amarilla con contorno y sombra de tinta, un poco ladeados */
+.encabezado h2 {
+  color: var(--pop-amarillo);
+  transform: rotate(-1.5deg); transform-origin: left bottom;
+}
+.ingenieria .encabezado h2 { color: var(--pop-amarillo); text-shadow: 4px 4px 0 var(--pop-rojo); }
+
+/* Número de sección dentro de una explosión roja */
+.encabezado h2::before {
+  display: grid; place-items: center; width: 4.4rem; height: 4.4rem; padding: 0;
+  clip-path: var(--estallido); background: var(--pop-rojo); color: var(--pop-amarillo);
+  font: 400 1.15rem var(--display); letter-spacing: 0; transform: rotate(-10deg);
+}
+.ingenieria .encabezado h2::before { background: var(--pop-rojo); color: var(--pop-amarillo); }
+
+/* Cifras: cada una en su color con trama */
+.datos li:nth-child(n) { background-image: var(--trama); background-size: var(--trama-paso); }
+.datos li:nth-child(1) { background-color: var(--pop-amarillo); }
+.datos li:nth-child(2) { background-color: var(--pop-cian); }
+.datos li:nth-child(3) { background-color: var(--pop-magenta); }
+.datos li:nth-child(4) { background-color: var(--pop-verde); }
+.datos li:nth-child(n) { color: var(--tinta); }
+
+/* Para quién: viñetas de colores primarios */
+.publico > div:nth-child(n) { background-image: var(--trama); background-size: var(--trama-paso); }
+.publico > div:nth-child(4n+1) { background-color: var(--pop-amarillo); }
+.publico > div:nth-child(4n+2) { background-color: var(--pop-cian); }
+.publico > div:nth-child(4n+3) { background-color: var(--pop-verde); }
+.publico > div:nth-child(4n+4) { background-color: var(--pop-magenta); }
+.publico dd { color: var(--tinta); }
+
+/* Tarjetas ladeadas, como viñetas pegadas a mano */
+.publico > div:nth-child(odd), .pasos li:nth-child(odd), .cambios li:nth-child(odd) { transform: rotate(-.8deg); }
+.publico > div:nth-child(even), .pasos li:nth-child(even), .cambios li:nth-child(even) { transform: rotate(.7deg); }
+.pasos li::before { background: var(--pop-rojo); }
+
+/* Botones con la sombra en color */
+.boton-principal { box-shadow: 4px 4px 0 var(--tinta), 8px 8px 0 var(--pop-amarillo); }
