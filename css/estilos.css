@@ -630,3 +630,47 @@ button.ventana-app:hover { box-shadow: 9px 9px 0 var(--tinta), 15px 15px 0 rgb(1
 
 /* Botones con la sombra en color */
 .boton-principal { box-shadow: 4px 4px 0 var(--tinta), 8px 8px 0 var(--pop-amarillo); }
+
+/* =====================================================================
+   Casa en 3D (three.js): pantalla oscura con marco grueso
+   ===================================================================== */
+.visor3d { display: grid; grid-template-columns: minmax(0, 1fr) 17rem; margin-top: 2rem; border: var(--b); box-shadow: var(--sombra); background: radial-gradient(120% 90% at 50% 20%, #2a2f35 0%, var(--pantalla) 70%); }
+@media (max-width: 60rem) { .visor3d { grid-template-columns: 1fr; } }
+.visor3d-escenario { position: relative; min-height: clamp(22rem, 62vh, 40rem); overflow: hidden; }
+@media (max-width: 40rem) { .visor3d-escenario { min-height: 26rem; } }
+.visor3d-lienzo, .visor3d-lienzo canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+.visor3d-lienzo canvas { cursor: grab; touch-action: pan-y; }
+.visor3d-lienzo canvas:active { cursor: grabbing; }
+.visor3d-respaldo { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.visor3d.sin-webgl .visor3d-respaldo { display: block; }
+.visor3d.sin-webgl .visor3d-cargando, .visor3d.sin-webgl .visor3d-controles { display: none; }
+.visor3d-cargando { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .9rem; color: #ccc; font: .85rem var(--mono); text-transform: uppercase; transition: opacity .4s; pointer-events: none; }
+.visor3d-cargando span { width: 3rem; height: 3rem; border: 4px solid #444; border-top-color: var(--cota); animation: visor3d-girar .9s steps(8) infinite; }
+.visor3d.listo .visor3d-cargando { opacity: 0; }
+@keyframes visor3d-girar { to { transform: rotate(1turn); } }
+.visor3d-tip { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; display: grid; gap: .1rem; padding: .55rem .75rem; background: var(--blanco); border: var(--b); font-size: .88rem; color: var(--tinta-2); white-space: nowrap; box-shadow: var(--sombra-chica); }
+.visor3d-tip b { font: .9rem var(--display); color: var(--tinta); text-transform: uppercase; }
+.visor3d-tip span { font-family: var(--mono); color: var(--tinta); background: var(--cota); padding: 0 .25rem; justify-self: start; }
+.visor3d-tip small { color: var(--tenue); font-size: .8rem; }
+.visor3d-cota { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; font: 700 .8rem var(--mono); color: var(--tinta); background: var(--cota); border: 2px solid var(--tinta); padding: .05rem .4rem; }
+.visor3d.armado .visor3d-cota { animation: visor3d-aparecer .3s steps(3); }
+@keyframes visor3d-aparecer { from { opacity: 0; } }
+.visor3d-panel { border-left: var(--b); background: var(--papel-2); padding: 1.1rem; display: flex; flex-direction: column; gap: .7rem; min-width: 0; }
+@media (max-width: 60rem) { .visor3d-panel { border-left: 0; border-top: var(--b); } }
+.visor3d-controles { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; }
+.visor3d-controles button { font: 700 .78rem var(--mono); text-transform: uppercase; color: var(--tinta); background: var(--blanco); border: var(--b-fino); padding: .5rem .3rem; cursor: pointer; box-shadow: 2px 2px 0 var(--tinta); }
+.visor3d-controles button:hover { background: var(--cota); }
+.visor3d-controles button[aria-pressed="true"] { background: var(--tinta); color: var(--cota); box-shadow: none; transform: translate(2px, 2px); }
+.visor3d-lista { list-style: none; margin: .3rem 0 0; padding: 0; display: grid; align-content: start; flex: 1 1 0; min-height: 8rem; overflow: auto; }
+.visor3d-nivel { font: .78rem var(--display); text-transform: uppercase; color: var(--blanco); background: var(--azul); border: var(--b-fino); padding: .3rem .5rem; margin-top: .6rem; }
+@media (max-width: 60rem) { .visor3d-lista { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); column-gap: 1.2rem; flex: none; overflow: visible; } .visor3d-nivel { grid-column: 1 / -1; } }
+.visor3d-lista button { width: 100%; display: flex; justify-content: space-between; gap: .6rem; align-items: baseline; text-align: left; background: transparent; border: 0; border-bottom: 2px solid #d6d0bf; padding: .45rem .3rem; color: var(--tinta-2); font: .9rem var(--letra); cursor: pointer; }
+.visor3d-lista button:hover { background: var(--blanco); }
+.visor3d-lista button b { font-weight: 700; color: var(--tinta); }
+.visor3d-lista button span { font: .78rem var(--mono); color: var(--tenue); white-space: nowrap; }
+.visor3d-lista li.activo button { background: var(--cota); }
+.visor3d-lista li.activo button span { color: var(--tinta); }
+.visor3d-lista li.apagado button { opacity: .35; }
+.visor3d-nota { margin: 0; font-size: .85rem; color: var(--tenue); line-height: 1.45; }
+.solo-tactil { display: none; }
+@media (hover: none) { .solo-raton { display: none; } .solo-tactil { display: inline; } }

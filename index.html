@@ -40,6 +40,7 @@
     <nav aria-label="Secciones">
       <ul id="menu-principal">
         <li><a href="#novedades">Novedades</a></li>
+        <li><a href="#casa-3d">Casa 3D</a></li>
         <li><a href="#que-hace">Qué hace</a></li>
         <li><a href="#como-usar">Cómo usarla</a></li>
         <li><a href="#atajos">Atajos</a></li>
@@ -313,6 +314,39 @@
     </section>
 
     <!-- QUÉ HACE: recorrido por las vistas -->
+    <section id="casa-3d" class="seccion">
+      <div class="encabezado">
+        <h2>La casa de ejemplo, en 3D</h2>
+        <p>
+          Es la misma casa que trae Space Cat: dos pisos sobre 9 × 9 m, con sus muebles a escala.
+          <span class="solo-raton">Gírala arrastrando, acércala con la rueda y pasa el cursor por un ambiente para ver sus medidas.</span>
+          <span class="solo-tactil">Gírala con un dedo y pellizca para acercarla.</span>
+        </p>
+      </div>
+      <div class="visor3d" data-visor3d>
+        <div class="visor3d-escenario">
+          <div class="visor3d-lienzo"></div>
+          <div class="visor3d-tip" hidden></div>
+          <div class="visor3d-cargando" aria-hidden="true"><span></span>Levantando muros…</div>
+          <img class="visor3d-respaldo" src="img/02_casa_completa_3d.png" alt="Casa de ejemplo de dos pisos en Space Cat" loading="lazy">
+        </div>
+        <div class="visor3d-panel">
+          <div class="visor3d-controles" role="group" aria-label="Pisos visibles">
+            <button type="button" data-vista="todo" aria-pressed="true">Todo</button>
+            <button type="button" data-vista="0" aria-pressed="false">Piso 1</button>
+            <button type="button" data-vista="1" aria-pressed="false">Piso 2</button>
+          </div>
+          <div class="visor3d-controles" role="group" aria-label="Opciones de la vista">
+            <button type="button" data-techo aria-pressed="false">Techo</button>
+            <button type="button" data-girar aria-pressed="true">Girar</button>
+            <button type="button" data-repetir>Repetir</button>
+          </div>
+          <ul class="visor3d-lista" aria-label="Ambientes de la casa"></ul>
+          <p class="visor3d-nota">Así se ve en la aplicación con la vista Casa. Ahí además puedes recorrerla por dentro.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="que-hace" class="seccion">
       <div class="encabezado">
         <h2>Qué hace</h2>
@@ -895,5 +929,22 @@
   <a class="arriba" href="#" aria-label="Volver arriba">↑</a>
 
   <script src="js/app.js" defer></script>
+<script>
+  // La casa en 3D (three.js) se carga solo cuando el visitante llega cerca de la sección.
+  (function () {
+    var raiz = document.querySelector('[data-visor3d]');
+    if (!raiz) return;
+    function cargar() {
+      var s = document.createElement('script');
+      s.src = 'js/casa3d.js';
+      s.onload = function () { try { window.SpaceCat3D.montar(raiz); } catch (e) { console.error(e); raiz.classList.add('sin-webgl'); } };
+      s.onerror = function () { raiz.classList.add('sin-webgl'); };
+      document.body.appendChild(s);
+    }
+    if (!('IntersectionObserver' in window)) return cargar();
+    var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); cargar(); } }, { rootMargin: '400px' });
+    io.observe(raiz);
+  })();
+</script>
 </body>
 </html>
